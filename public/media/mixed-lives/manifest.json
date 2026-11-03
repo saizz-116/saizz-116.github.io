@@ -1,0 +1,1621 @@
+{
+  "source": "mixedlives封面图2.psd",
+  "sourceCanvas": {
+    "width": 3840,
+    "height": 2160
+  },
+  "exportCanvas": {
+    "width": 1200,
+    "height": 675
+  },
+  "scale": 0.3125,
+  "colorProfile": "Display P3",
+  "encoding": "Lossless WebP, original Display P3 ICC embedded. Original PSD unchanged.",
+  "layerOrder": "Bottom to top; preserve zIndex. All positions use exportCanvas pixel coordinates.",
+  "top": {
+    "src": "/media/mixed-lives/cover-top.webp",
+    "width": 1200,
+    "height": 675
+  },
+  "fallback": {
+    "src": "/media/mixed-lives/cover-bottom-fallback.webp",
+    "width": 1200,
+    "height": 675
+  },
+  "groups": {
+    "back": "/media/mixed-lives/cover-bottom-back.webp",
+    "floating": "/media/mixed-lives/cover-bottom-float.webp",
+    "front": "/media/mixed-lives/cover-bottom-front.webp"
+  },
+  "floatingObjects": [
+    "Campari"
+  ],
+  "optimizedStack": [
+    {
+      "id": "static-back",
+      "src": "/media/mixed-lives/cover-bottom-back.webp",
+      "left": 0,
+      "top": 0,
+      "width": 1200,
+      "height": 675,
+      "zIndex": 0,
+      "safeToFloat": false
+    },
+    {
+      "id": "campari",
+      "src": "/media/mixed-lives/cover-bottom-float.webp",
+      "left": 0,
+      "top": 0,
+      "width": 1200,
+      "height": 675,
+      "zIndex": 1,
+      "safeToFloat": true
+    },
+    {
+      "id": "static-front",
+      "src": "/media/mixed-lives/cover-bottom-front.webp",
+      "left": 0,
+      "top": 0,
+      "width": 1200,
+      "height": 675,
+      "zIndex": 2,
+      "safeToFloat": false
+    }
+  ],
+  "layers": [
+    {
+      "id": "background",
+      "index": 0,
+      "zIndex": 0,
+      "name": "背景",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-00-background.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "edgeDistances": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "left": 0,
+      "top": 0,
+      "width": 1200,
+      "height": 675,
+      "normalized": {
+        "left": 0.0,
+        "top": 0.0,
+        "width": 1.0,
+        "height": 1.0
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 636
+    },
+    {
+      "id": "campari",
+      "index": 1,
+      "zIndex": 1,
+      "name": "图层 1",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-01-campari.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        202,
+        473,
+        1603,
+        2112
+      ],
+      "edgeDistances": [
+        202,
+        473,
+        2237,
+        48
+      ],
+      "left": 63,
+      "top": 148,
+      "width": 440,
+      "height": 509,
+      "normalized": {
+        "left": 0.0525,
+        "top": 0.21925925925925926,
+        "width": 0.36666666666666664,
+        "height": 0.7540740740740741
+      },
+      "safeToFloat": true,
+      "reason": "Fully contained native object, minimum edge clearance48px.",
+      "motion": {
+        "translateX": 3,
+        "translateY": 2,
+        "rotationDeg": 0.35,
+        "durationSeconds": 7.8
+      },
+      "bytes": 91332
+    },
+    {
+      "id": "shaker",
+      "index": 2,
+      "zIndex": 2,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-02-shaker.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        0,
+        1211,
+        1047,
+        2160
+      ],
+      "edgeDistances": [
+        0,
+        1211,
+        2793,
+        0
+      ],
+      "left": 0,
+      "top": 381,
+      "width": 327,
+      "height": 294,
+      "normalized": {
+        "left": 0.0,
+        "top": 0.5644444444444444,
+        "width": 0.2725,
+        "height": 0.43555555555555553
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 60678
+    },
+    {
+      "id": "lime",
+      "index": 3,
+      "zIndex": 3,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-03-lime.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        0,
+        523,
+        450,
+        1351
+      ],
+      "edgeDistances": [
+        0,
+        523,
+        3390,
+        809
+      ],
+      "left": 0,
+      "top": 162,
+      "width": 142,
+      "height": 261,
+      "normalized": {
+        "left": 0.0,
+        "top": 0.24,
+        "width": 0.11833333333333333,
+        "height": 0.38666666666666666
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 38426
+    },
+    {
+      "id": "rum",
+      "index": 4,
+      "zIndex": 4,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-04-rum.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        816,
+        0,
+        1836,
+        858
+      ],
+      "edgeDistances": [
+        816,
+        0,
+        2004,
+        1302
+      ],
+      "left": 254,
+      "top": 0,
+      "width": 320,
+      "height": 270,
+      "normalized": {
+        "left": 0.21166666666666667,
+        "top": 0.0,
+        "width": 0.26666666666666666,
+        "height": 0.4
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 53718
+    },
+    {
+      "id": "honey",
+      "index": 5,
+      "zIndex": 5,
+      "name": "图层 2",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-05-honey.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        1233,
+        0,
+        2407,
+        1343
+      ],
+      "edgeDistances": [
+        1233,
+        0,
+        1433,
+        817
+      ],
+      "left": 385,
+      "top": 0,
+      "width": 370,
+      "height": 421,
+      "normalized": {
+        "left": 0.32083333333333336,
+        "top": 0.0,
+        "width": 0.30833333333333335,
+        "height": 0.6237037037037036
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 101174
+    },
+    {
+      "id": "coconut-cream",
+      "index": 6,
+      "zIndex": 6,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-06-coconut-cream.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        1856,
+        973,
+        2679,
+        2160
+      ],
+      "edgeDistances": [
+        1856,
+        973,
+        1161,
+        0
+      ],
+      "left": 579,
+      "top": 304,
+      "width": 261,
+      "height": 371,
+      "normalized": {
+        "left": 0.4825,
+        "top": 0.45037037037037037,
+        "width": 0.2175,
+        "height": 0.5496296296296296
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 76472
+    },
+    {
+      "id": "carton",
+      "index": 7,
+      "zIndex": 7,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-07-carton.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        1387,
+        443,
+        2760,
+        2160
+      ],
+      "edgeDistances": [
+        1387,
+        443,
+        1080,
+        0
+      ],
+      "left": 431,
+      "top": 138,
+      "width": 432,
+      "height": 537,
+      "normalized": {
+        "left": 0.3591666666666667,
+        "top": 0.20444444444444446,
+        "width": 0.36,
+        "height": 0.7955555555555556
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 37720
+    },
+    {
+      "id": "coffee-liqueur",
+      "index": 8,
+      "zIndex": 8,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-08-coffee-liqueur.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        88,
+        0,
+        3294,
+        1757
+      ],
+      "edgeDistances": [
+        88,
+        0,
+        546,
+        403
+      ],
+      "left": 25,
+      "top": 0,
+      "width": 1002,
+      "height": 549,
+      "normalized": {
+        "left": 0.020833333333333332,
+        "top": 0.0,
+        "width": 0.835,
+        "height": 0.8133333333333334
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 37178
+    },
+    {
+      "id": "vermouth",
+      "index": 9,
+      "zIndex": 9,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-09-vermouth.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        3084,
+        0,
+        3840,
+        1127
+      ],
+      "edgeDistances": [
+        3084,
+        0,
+        0,
+        1033
+      ],
+      "left": 964,
+      "top": 0,
+      "width": 236,
+      "height": 352,
+      "normalized": {
+        "left": 0.8033333333333333,
+        "top": 0.0,
+        "width": 0.19666666666666666,
+        "height": 0.5214814814814814
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 74084
+    },
+    {
+      "id": "tonic",
+      "index": 10,
+      "zIndex": 10,
+      "name": "已插入图像",
+      "nativeExportFile": "Q:\\Portfolio\\.qa\\mixed-lives-native-layers\\layer-10-tonic.webp",
+      "visible": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "clipping": false,
+      "hasMask": false,
+      "hasEffects": false,
+      "sourceBbox": [
+        3092,
+        1423,
+        3840,
+        2160
+      ],
+      "edgeDistances": [
+        3092,
+        1423,
+        0,
+        0
+      ],
+      "left": 966,
+      "top": 445,
+      "width": 234,
+      "height": 230,
+      "normalized": {
+        "left": 0.805,
+        "top": 0.6592592592592592,
+        "width": 0.195,
+        "height": 0.34074074074074073
+      },
+      "safeToFloat": false,
+      "reason": "Static: native pixels reach or lie within20px of a canvas border.",
+      "motion": null,
+      "bytes": 48284
+    }
+  ],
+  "nativeRebuildComparison": {
+    "maxChannelDifference": 3,
+    "meanChannelDifference": 0.4249489414544753,
+    "differentPixels": 3823369
+  },
+  "exportGroupComparison": {
+    "maxChannelDifference": 9,
+    "meanChannelDifference": 0.41425833333333334,
+    "differentPixels": 388772
+  },
+  "motionNote": "Fully contained main objects may bob and rotate gently, with transform origin at their main object center. Overlapping layers remain independent and keep zIndex. Edge-clipped objects may move only outward from their clipped edges; do not rotate or shift inward unless a separate proven overscan guard preserves the original cut plane. Respect prefers-reduced-motion. Never place the merged fallback under separate object layers.",
+  "objects": [
+    {
+      "id": "campari",
+      "label": "Campari",
+      "layerIndex": 1,
+      "zIndex": 1,
+      "src": "/media/mixed-lives/objects/campari.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        202,
+        473,
+        1603,
+        2112
+      ],
+      "mainBbox": [
+        578,
+        478,
+        1371,
+        2072
+      ],
+      "mainBboxNormalized": [
+        0.15052083333333333,
+        0.2212962962962963,
+        0.35703125,
+        0.9592592592592593
+      ],
+      "mainBboxExport": [
+        180.625,
+        149.375,
+        428.4375,
+        647.5
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 674564,
+      "components": [
+        {
+          "pixels": 674564,
+          "bbox": [
+            578,
+            478,
+            1371,
+            2072
+          ]
+        },
+        {
+          "pixels": 290,
+          "bbox": [
+            668,
+            952,
+            691,
+            986
+          ]
+        },
+        {
+          "pixels": 52,
+          "bbox": [
+            1575,
+            1054,
+            1581,
+            1065
+          ]
+        },
+        {
+          "pixels": 47,
+          "bbox": [
+            1291,
+            678,
+            1296,
+            689
+          ]
+        },
+        {
+          "pixels": 45,
+          "bbox": [
+            1597,
+            1137,
+            1603,
+            1147
+          ]
+        }
+      ],
+      "componentCount": 73,
+      "edgeDistances": [
+        578,
+        478,
+        2469,
+        88
+      ],
+      "clippedEdges": [],
+      "fullyContainedMainObject": true,
+      "safeToFloat": true,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 92080,
+      "constrainedEdges": [],
+      "outwardDirection": [
+        0,
+        0
+      ],
+      "transformOrigin": "25.3776% 59.0278%",
+      "motionMode": "free"
+    },
+    {
+      "id": "shaker",
+      "label": "Shaker",
+      "layerIndex": 2,
+      "zIndex": 2,
+      "src": "/media/mixed-lives/objects/shaker.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        0,
+        1211,
+        1047,
+        2160
+      ],
+      "mainBbox": [
+        0,
+        1221,
+        726,
+        2160
+      ],
+      "mainBboxNormalized": [
+        0.0,
+        0.5652777777777778,
+        0.1890625,
+        1.0
+      ],
+      "mainBboxExport": [
+        0.0,
+        381.5625,
+        226.875,
+        675.0
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 454373,
+      "components": [
+        {
+          "pixels": 454373,
+          "bbox": [
+            0,
+            1221,
+            726,
+            2160
+          ]
+        },
+        {
+          "pixels": 27,
+          "bbox": [
+            14,
+            1418,
+            22,
+            1424
+          ]
+        },
+        {
+          "pixels": 20,
+          "bbox": [
+            17,
+            1388,
+            24,
+            1393
+          ]
+        },
+        {
+          "pixels": 14,
+          "bbox": [
+            19,
+            1405,
+            26,
+            1408
+          ]
+        },
+        {
+          "pixels": 14,
+          "bbox": [
+            11,
+            1425,
+            15,
+            1430
+          ]
+        }
+      ],
+      "componentCount": 39,
+      "edgeDistances": [
+        0,
+        1221,
+        3114,
+        0
+      ],
+      "clippedEdges": [
+        "left",
+        "bottom"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 63342,
+      "constrainedEdges": [
+        "left",
+        "bottom"
+      ],
+      "outwardDirection": [
+        -1,
+        1
+      ],
+      "transformOrigin": "9.4531% 78.2639%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "lime",
+      "label": "Lime",
+      "layerIndex": 3,
+      "zIndex": 3,
+      "src": "/media/mixed-lives/objects/lime.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        0,
+        523,
+        450,
+        1351
+      ],
+      "mainBbox": [
+        0,
+        524,
+        449,
+        1346
+      ],
+      "mainBboxNormalized": [
+        0.0,
+        0.24259259259259258,
+        0.11692708333333333,
+        0.6231481481481481
+      ],
+      "mainBboxExport": [
+        0.0,
+        163.75,
+        140.3125,
+        420.625
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 259716,
+      "components": [
+        {
+          "pixels": 259716,
+          "bbox": [
+            0,
+            524,
+            449,
+            1346
+          ]
+        },
+        {
+          "pixels": 15,
+          "bbox": [
+            417,
+            813,
+            421,
+            818
+          ]
+        },
+        {
+          "pixels": 9,
+          "bbox": [
+            409,
+            793,
+            412,
+            798
+          ]
+        },
+        {
+          "pixels": 7,
+          "bbox": [
+            437,
+            869,
+            440,
+            872
+          ]
+        },
+        {
+          "pixels": 7,
+          "bbox": [
+            443,
+            895,
+            446,
+            898
+          ]
+        }
+      ],
+      "componentCount": 19,
+      "edgeDistances": [
+        0,
+        524,
+        3391,
+        814
+      ],
+      "clippedEdges": [
+        "left"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 38118,
+      "constrainedEdges": [
+        "left"
+      ],
+      "outwardDirection": [
+        -1,
+        0
+      ],
+      "transformOrigin": "5.8464% 43.2870%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "rum",
+      "label": "Rum",
+      "layerIndex": 4,
+      "zIndex": 4,
+      "src": "/media/mixed-lives/objects/rum.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        816,
+        0,
+        1836,
+        858
+      ],
+      "mainBbox": [
+        818,
+        0,
+        1566,
+        858
+      ],
+      "mainBboxNormalized": [
+        0.21302083333333333,
+        0.0,
+        0.4078125,
+        0.3972222222222222
+      ],
+      "mainBboxExport": [
+        255.625,
+        0.0,
+        489.375,
+        268.125
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 515409,
+      "components": [
+        {
+          "pixels": 515409,
+          "bbox": [
+            818,
+            0,
+            1566,
+            858
+          ]
+        },
+        {
+          "pixels": 15,
+          "bbox": [
+            819,
+            75,
+            822,
+            82
+          ]
+        },
+        {
+          "pixels": 10,
+          "bbox": [
+            817,
+            58,
+            821,
+            62
+          ]
+        },
+        {
+          "pixels": 6,
+          "bbox": [
+            1516,
+            271,
+            1519,
+            274
+          ]
+        },
+        {
+          "pixels": 4,
+          "bbox": [
+            1509,
+            185,
+            1512,
+            187
+          ]
+        }
+      ],
+      "componentCount": 19,
+      "edgeDistances": [
+        818,
+        0,
+        2274,
+        1302
+      ],
+      "clippedEdges": [
+        "top"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 56376,
+      "constrainedEdges": [
+        "top"
+      ],
+      "outwardDirection": [
+        0,
+        -1
+      ],
+      "transformOrigin": "31.0417% 19.8611%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "honey",
+      "label": "Honey",
+      "layerIndex": 5,
+      "zIndex": 5,
+      "src": "/media/mixed-lives/objects/honey.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        1233,
+        0,
+        2407,
+        1343
+      ],
+      "mainBbox": [
+        1252,
+        0,
+        2069,
+        1341
+      ],
+      "mainBboxNormalized": [
+        0.3260416666666667,
+        0.0,
+        0.5388020833333333,
+        0.6208333333333333
+      ],
+      "mainBboxExport": [
+        391.25,
+        0.0,
+        646.5625,
+        419.0625
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 659918,
+      "components": [
+        {
+          "pixels": 659918,
+          "bbox": [
+            1252,
+            0,
+            2069,
+            1341
+          ]
+        },
+        {
+          "pixels": 123,
+          "bbox": [
+            1330,
+            724,
+            1345,
+            742
+          ]
+        },
+        {
+          "pixels": 43,
+          "bbox": [
+            1244,
+            1156,
+            1251,
+            1170
+          ]
+        },
+        {
+          "pixels": 39,
+          "bbox": [
+            2264,
+            1097,
+            2271,
+            1109
+          ]
+        },
+        {
+          "pixels": 28,
+          "bbox": [
+            2018,
+            321,
+            2025,
+            328
+          ]
+        }
+      ],
+      "componentCount": 69,
+      "edgeDistances": [
+        1252,
+        0,
+        1771,
+        819
+      ],
+      "clippedEdges": [
+        "top"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 104314,
+      "constrainedEdges": [
+        "top"
+      ],
+      "outwardDirection": [
+        0,
+        -1
+      ],
+      "transformOrigin": "43.2422% 31.0417%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "coconut-cream",
+      "label": "Coconut Cream",
+      "layerIndex": 6,
+      "zIndex": 6,
+      "src": "/media/mixed-lives/objects/coconut-cream.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        1856,
+        973,
+        2679,
+        2160
+      ],
+      "mainBbox": [
+        1859,
+        978,
+        2679,
+        2160
+      ],
+      "mainBboxNormalized": [
+        0.48411458333333335,
+        0.4527777777777778,
+        0.69765625,
+        1.0
+      ],
+      "mainBboxExport": [
+        580.9375,
+        305.625,
+        837.1875,
+        675.0
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 586730,
+      "components": [
+        {
+          "pixels": 586730,
+          "bbox": [
+            1859,
+            978,
+            2679,
+            2160
+          ]
+        },
+        {
+          "pixels": 23,
+          "bbox": [
+            2649,
+            1967,
+            2659,
+            1971
+          ]
+        },
+        {
+          "pixels": 22,
+          "bbox": [
+            1868,
+            1158,
+            1873,
+            1165
+          ]
+        },
+        {
+          "pixels": 18,
+          "bbox": [
+            2597,
+            999,
+            2601,
+            1005
+          ]
+        },
+        {
+          "pixels": 13,
+          "bbox": [
+            2606,
+            1399,
+            2610,
+            1404
+          ]
+        }
+      ],
+      "componentCount": 39,
+      "edgeDistances": [
+        1859,
+        978,
+        1161,
+        0
+      ],
+      "clippedEdges": [
+        "bottom"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 79910,
+      "constrainedEdges": [
+        "bottom"
+      ],
+      "outwardDirection": [
+        0,
+        1
+      ],
+      "transformOrigin": "59.0885% 72.6389%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "carton",
+      "label": "Carton",
+      "layerIndex": 7,
+      "zIndex": 7,
+      "src": "/media/mixed-lives/objects/carton.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        1387,
+        443,
+        2760,
+        2160
+      ],
+      "mainBbox": [
+        1388,
+        1713,
+        2003,
+        2160
+      ],
+      "mainBboxNormalized": [
+        0.3614583333333333,
+        0.7930555555555555,
+        0.5216145833333333,
+        1.0
+      ],
+      "mainBboxExport": [
+        433.75,
+        535.3125,
+        625.9375,
+        675.0
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 220838,
+      "components": [
+        {
+          "pixels": 220838,
+          "bbox": [
+            1388,
+            1713,
+            2003,
+            2160
+          ]
+        },
+        {
+          "pixels": 29,
+          "bbox": [
+            2185,
+            1901,
+            2189,
+            1911
+          ]
+        },
+        {
+          "pixels": 28,
+          "bbox": [
+            1687,
+            1714,
+            1692,
+            1722
+          ]
+        },
+        {
+          "pixels": 20,
+          "bbox": [
+            1522,
+            1733,
+            1527,
+            1738
+          ]
+        },
+        {
+          "pixels": 10,
+          "bbox": [
+            1965,
+            2155,
+            1968,
+            2160
+          ]
+        }
+      ],
+      "componentCount": 28,
+      "edgeDistances": [
+        1388,
+        1713,
+        1837,
+        0
+      ],
+      "clippedEdges": [
+        "bottom"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 38208,
+      "constrainedEdges": [
+        "bottom"
+      ],
+      "outwardDirection": [
+        0,
+        1
+      ],
+      "transformOrigin": "44.1536% 89.6528%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "coffee-liqueur",
+      "label": "Coffee Liqueur",
+      "layerIndex": 8,
+      "zIndex": 8,
+      "src": "/media/mixed-lives/objects/coffee-liqueur.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        88,
+        0,
+        3294,
+        1757
+      ],
+      "mainBbox": [
+        88,
+        0,
+        744,
+        586
+      ],
+      "mainBboxNormalized": [
+        0.022916666666666665,
+        0.0,
+        0.19375,
+        0.2712962962962963
+      ],
+      "mainBboxExport": [
+        27.5,
+        0.0,
+        232.5,
+        183.125
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 263583,
+      "components": [
+        {
+          "pixels": 263583,
+          "bbox": [
+            88,
+            0,
+            744,
+            586
+          ]
+        },
+        {
+          "pixels": 670,
+          "bbox": [
+            2642,
+            1592,
+            2670,
+            1659
+          ]
+        },
+        {
+          "pixels": 82,
+          "bbox": [
+            3025,
+            1432,
+            3038,
+            1454
+          ]
+        },
+        {
+          "pixels": 41,
+          "bbox": [
+            2960,
+            1661,
+            2970,
+            1671
+          ]
+        },
+        {
+          "pixels": 38,
+          "bbox": [
+            2656,
+            1671,
+            2665,
+            1684
+          ]
+        }
+      ],
+      "componentCount": 1577,
+      "edgeDistances": [
+        88,
+        0,
+        3096,
+        1574
+      ],
+      "clippedEdges": [
+        "top"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 37598,
+      "constrainedEdges": [
+        "top"
+      ],
+      "outwardDirection": [
+        0,
+        -1
+      ],
+      "transformOrigin": "10.8333% 13.5648%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "vermouth",
+      "label": "Vermouth",
+      "layerIndex": 9,
+      "zIndex": 9,
+      "src": "/media/mixed-lives/objects/vermouth.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        3084,
+        0,
+        3840,
+        1127
+      ],
+      "mainBbox": [
+        3093,
+        0,
+        3840,
+        1121
+      ],
+      "mainBboxNormalized": [
+        0.80546875,
+        0.0,
+        1.0,
+        0.5189814814814815
+      ],
+      "mainBboxExport": [
+        966.5625,
+        0.0,
+        1200.0,
+        350.3125
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 576871,
+      "components": [
+        {
+          "pixels": 576871,
+          "bbox": [
+            3093,
+            0,
+            3840,
+            1121
+          ]
+        },
+        {
+          "pixels": 56,
+          "bbox": [
+            3442,
+            1106,
+            3457,
+            1114
+          ]
+        },
+        {
+          "pixels": 9,
+          "bbox": [
+            3111,
+            160,
+            3114,
+            164
+          ]
+        },
+        {
+          "pixels": 8,
+          "bbox": [
+            3715,
+            164,
+            3719,
+            168
+          ]
+        },
+        {
+          "pixels": 3,
+          "bbox": [
+            3713,
+            160,
+            3715,
+            162
+          ]
+        }
+      ],
+      "componentCount": 5,
+      "edgeDistances": [
+        3093,
+        0,
+        0,
+        1039
+      ],
+      "clippedEdges": [
+        "top",
+        "right"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 73958,
+      "constrainedEdges": [
+        "top",
+        "right"
+      ],
+      "outwardDirection": [
+        1,
+        -1
+      ],
+      "transformOrigin": "90.2734% 25.9491%",
+      "motionMode": "outward-only"
+    },
+    {
+      "id": "tonic",
+      "label": "Tonic",
+      "layerIndex": 10,
+      "zIndex": 10,
+      "src": "/media/mixed-lives/objects/tonic.webp",
+      "width": 1200,
+      "height": 675,
+      "sourceBbox": [
+        3092,
+        1423,
+        3840,
+        2160
+      ],
+      "mainBbox": [
+        3095,
+        1442,
+        3838,
+        2160
+      ],
+      "mainBboxNormalized": [
+        0.8059895833333334,
+        0.6675925925925926,
+        0.9994791666666667,
+        1.0
+      ],
+      "mainBboxExport": [
+        967.1875,
+        450.625,
+        1199.375,
+        675.0
+      ],
+      "componentThreshold": 8,
+      "mainComponentPixels": 412478,
+      "components": [
+        {
+          "pixels": 412478,
+          "bbox": [
+            3095,
+            1442,
+            3838,
+            2160
+          ]
+        },
+        {
+          "pixels": 114,
+          "bbox": [
+            3410,
+            1439,
+            3441,
+            1450
+          ]
+        },
+        {
+          "pixels": 66,
+          "bbox": [
+            3764,
+            1534,
+            3782,
+            1551
+          ]
+        },
+        {
+          "pixels": 54,
+          "bbox": [
+            3665,
+            1489,
+            3677,
+            1497
+          ]
+        },
+        {
+          "pixels": 45,
+          "bbox": [
+            3684,
+            1490,
+            3694,
+            1503
+          ]
+        }
+      ],
+      "componentCount": 66,
+      "edgeDistances": [
+        3095,
+        1442,
+        2,
+        0
+      ],
+      "clippedEdges": [
+        "bottom"
+      ],
+      "fullyContainedMainObject": false,
+      "safeToFloat": false,
+      "opacity": 1.0,
+      "blendMode": "normal",
+      "visible": true,
+      "hasMask": false,
+      "hasEffects": false,
+      "clipping": false,
+      "bytes": 49162,
+      "constrainedEdges": [
+        "right",
+        "bottom"
+      ],
+      "outwardDirection": [
+        1,
+        1
+      ],
+      "transformOrigin": "90.2734% 83.3796%",
+      "motionMode": "outward-only"
+    }
+  ],
+  "objectAnalysis": "Exact largest 8-connected alpha>=8 component at original3840x2160. All native alpha pixels, including dust, remain unmodified in the exports.",
+  "objectStack": {
+    "background": "#000000",
+    "order": "Ascending zIndex; every object uses the full1200x675 export canvas. No object scaling or source-position changes.",
+    "totalBytes": 633066
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+*.tsbuildinfo
+.qa/
+.preview/
+material/
+materials/
+.env
+.env.*
+!.env.example

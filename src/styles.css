@@ -1,0 +1,253 @@
+@charset "UTF-8";
+:root {
+  --paper: #f2f1ec;
+  --ink: #302f2a;
+  --muted: #6c6b62;
+  --rule: #d6d4c9;
+  --gutter: clamp(24px, 3.7vw, 66px);
+  --serif: Georgia, 'Times New Roman', serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 280px; }
+h1, h2, h3, p { margin: 0; font-weight: 400; }
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+img, video { display: block; max-width: 100%; }
+svg { flex-shrink: 0; }
+::selection { background: #d9ddce; color: var(--ink); }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 5px; }
+main:focus { outline: none; }
+.site-shell { min-height: 100svh; padding-inline: var(--gutter); display: flex; flex-direction: column; }
+.arrow { transition: transform .25s ease; }
+.arrow--back { transform: rotate(180deg); }
+.skip-link { position: fixed; z-index: 20; top: 12px; left: 20px; background: var(--ink); color: var(--paper); padding: 13px 18px; transform: translateY(-150%); }
+.skip-link:focus { transform: none; }
+.site-header { width: 100%; max-width: 1550px; margin-inline: auto; padding-block: 27px 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; flex-shrink: 0; }
+.site-header > nav { display: flex; align-items: center; gap: 16px; }
+.header-editor-link { padding: 10px 0; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.header-editor-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.identity { display: block; width: fit-content; }
+.identity-name { display: block; font-family: var(--serif); font-style: italic; font-size: clamp(32px, 3vw, 46px); line-height: 1.05; letter-spacing: -.055em; }
+.identity-subtitle { display: block; margin-top: 7px; font-size: 12px; letter-spacing: .025em; }
+.header-link { min-width: 91px; min-height: 41px; border: 1px solid #aba99d; display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 10px 13px; font-size: 13px; margin-top: 4px; transition: background .2s; }
+.header-link:hover { background: #e6e5dc; }
+.header-link:hover .arrow { transform: translate(2px,-2px); }
+.header-link:hover .arrow--back { transform: rotate(180deg) translate(2px,-2px); }
+
+/* An exhibition composition around a shared central spine. */
+.home-page { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.exhibition { --gap: 10px; width: min(1200px, calc((100svh - 200px) * 1.9), 100%); height: min(630px, calc(100svh - 200px)); min-height: 420px; display: grid; grid-template-columns: repeat(24,minmax(0,1fr)); grid-template-rows: repeat(20,minmax(0,1fr)); gap: var(--gap); margin-block: 10px 6px; }
+.exhibit { min-width: 0; min-height: 0; }
+.exhibit-link { display: block; position: relative; width: 100%; height: 100%; }
+.exhibit-image { width: 100%; height: 100%; min-width: 0; min-height: 0; background: var(--cover-color); transition: transform .4s cubic-bezier(.2,.65,.3,1); transform-origin: center; overflow: hidden; }
+.exhibit-image img { width: 100%; height: 100%; object-fit: cover; }
+.exhibit-link:hover .exhibit-image { transform: scale(1.025); position: relative; z-index: 2; }
+.exhibit-link:focus-visible { outline: none; }
+.exhibit-link:focus-visible .exhibit-image { outline: 1px solid var(--ink); outline-offset: 5px; transform: scale(1.015); }
+.exhibit-caption { position: absolute; min-width: 0; }
+.exhibit-caption h2 { font-family: var(--serif); font-size: clamp(20px,1.65vw,25px); line-height: 1.17; letter-spacing: -.035em; }
+.exhibit-caption p { font-size: 13px; line-height: 1.65; color: #66675d; margin-top: 12px; }
+.exhibit-link:hover h2 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.exhibit--emotional-vacuum { grid-column: 6/12; grid-row: 3/10; }
+.exhibit--emotional-vacuum .exhibit-caption { width: 66%; right: calc(100% + var(--gap)); top: 50%; transform: translateY(-50%); padding-right: 14px; }
+.exhibit--pcg-project { grid-column: 12/21; grid-row: 1/10; }
+.exhibit--pcg-project .exhibit-caption { width: 43%; left: calc(100% + var(--gap)); top: 50%; transform: translateY(-50%); padding-left: 13px; }
+.exhibit--mixed-lives { grid-column: 5/12; grid-row: 10/21; aspect-ratio: 8/9; align-self: start; }
+.exhibit--mixed-lives .exhibit-caption { width: clamp(160px,48%,190px); right: calc(100% + var(--gap)); top: 55%; transform: translateY(-50%); padding-right: 14px; }
+.exhibit--mixed-lives .exhibit-caption h2 { white-space: nowrap; }
+.exhibit--dku-campus-tour { grid-column: 12/18; grid-row: 10/17; }
+.exhibit--dku-campus-tour .exhibit-caption { width: min(330px,125%); top: calc(100% + var(--gap)); padding-top: 4px; }
+.exhibit--dku-campus-tour .exhibit-caption h2 { font-size: 22px; }
+.exhibit--dku-campus-tour .exhibit-caption p { margin-top: 7px; }
+
+.exhibition--custom { display: block; position: relative; }
+.home-layout-scaled { position: absolute; inset: 0 auto auto 0; transform-origin: top left; }
+.layout-scene { position: relative; isolation: isolate; }
+.layout-piece { position: absolute; display: block; min-width: 0; }
+.layout-piece--cover { transition: transform .4s cubic-bezier(.2,.65,.3,1); }
+a.layout-piece--cover:hover { transform: scale(1.025); z-index: 2; }
+.layout-cover { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.layout-cover > img { width: 100%; height: 100%; object-fit: cover; }
+.layout-piece h2, .layout-piece p { font: inherit; color: inherit; }
+.layout-piece--title { font-family: var(--serif); letter-spacing: -.035em; overflow-wrap: break-word; }
+.layout-piece--description { color: #66675d; overflow-wrap: break-word; }
+a.layout-piece--title:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+/* Two original Mixed Lives artworks, displayed as a static cover. */
+.exhibit--mixed-lives .exhibit-image { position: relative; background: #000; }
+.mixed-cover { position: absolute; inset: 0; display: grid; grid-template-rows: 1fr 1fr; overflow: hidden; }
+.mixed-cover__top, .mixed-cover__bottom { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.mixed-cover__top { background: #604b43; }
+.mixed-cover__bottom { background: #000; }
+.mixed-cover__top img, .mixed-cover__bottom img { width: 100%; height: 100%; object-fit: contain; }
+.mixed-cover .mixed-cover__title { position: absolute; z-index: 3; top: 56%; left: 58.5%; width: 23%; height: auto; object-fit: contain; transform: rotate(-5deg); pointer-events: none; }
+.home-footer { padding-block: 16px 25px; display: flex; justify-content: flex-end; flex-shrink: 0; }
+.contact-link { display: flex; align-items: center; justify-content: space-between; gap: 34px; border-bottom: 1px solid #aaa99b; padding-block: 5px 11px; font-size: 13px; }
+.contact-link:hover .arrow { transform: translate(2px,-2px); }
+
+/* A curated public CV, with no download of the private source PDF. */
+.cv-page { width: min(1260px,100%); margin-inline: auto; padding-block: 25px 32px; display: grid; grid-template-columns: .94fr 1.06fr; gap: clamp(55px,7vw,110px); }
+.cv-column { min-width: 0; }
+.cv-introduction h1 { font-family: var(--serif); font-size: 33px; line-height: 1.13; letter-spacing: -.035em; max-width: 380px; }
+.cv-introduction > p { font-size: 14px; line-height: 1.7; color: var(--muted); margin-top: 18px; max-width: 445px; }
+.cv-email { display: inline-block; font-size: 13px; margin-top: 17px; border-bottom: 1px solid #b6b5a8; padding-bottom: 4px; overflow-wrap: anywhere; }
+.cv-page h2 { font-size: 12px; letter-spacing: .055em; text-transform: uppercase; }
+.cv-section { margin-top: 28px; }
+.cv-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.cv-section-heading > span { font-size: 11px; color: var(--muted); }
+.education-list { margin-top: 16px; display: grid; gap: 15px; }
+.education-entry h3 { font-size: 15px; line-height: 1.5; }
+.education-entry p { margin-top: 3px; font-size: 13px; line-height: 1.6; color: var(--muted); max-width: 430px; }
+.skills-list { display: grid; gap: 11px; margin: 16px 0 0; }
+.skills-list > div { display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 17px; }
+.skills-list dt { font-size: 12px; line-height: 1.6; }
+.skills-list dd { margin: 0; font-size: 13px; line-height: 1.65; color: var(--muted); }
+.cv-project-list { margin-top: 15px; }
+.cv-project + .cv-project { margin-top: 15px; }
+.cv-project-link { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+.cv-project-link h3 { font-family: var(--serif); font-size: 22px; line-height: 1.15; letter-spacing: -.025em; }
+.cv-project-link .arrow { width: 15px; height: 15px; }
+.cv-project-link:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.cv-project-link:hover .arrow { transform: translate(2px,-2px); }
+.cv-role { margin-top: 5px; font-size: 11px; line-height: 1.5; color: #666b5a; }
+.cv-project-description { margin-top: 5px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.cv-experience { padding-top: 20px; border-top: 1px solid var(--rule); margin-top: 23px; }
+.experience-entry { margin-top: 14px; }
+.experience-entry > div { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; }
+.experience-entry h3 { font-size: 12px; line-height: 1.6; }
+.experience-entry span { flex-shrink: 0; font-size: 10px; color: var(--muted); }
+.experience-entry p { font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 2px; }
+
+/* Project bodies intentionally remain empty until materials are supplied. */
+.project-page { display: flex; flex-direction: column; flex: 1; width: 100%; max-width: 1550px; margin-inline: auto; padding-top: 27px; padding-bottom: 32px; }
+.project-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; }
+.project-heading-text { min-width: 0; }
+.project-heading h1 { font-family: var(--serif); font-size: clamp(36px,3.25vw,52px); line-height: 1.1; letter-spacing: -.04em; }
+.project-heading > nav { flex-shrink: 0; }
+.project-return { display: inline-flex; align-items: center; gap: 12px; min-height: 40px; margin-top: 18px; padding: 10px 14px; border: 1px solid #aaa99b; font-size: 13px; transition: background .2s; }
+.project-return > span { font-size: 18px; line-height: 1; }
+.project-return:hover { background: #e6e5dc; }
+.project-canvas { flex: 1; min-height: 250px; }
+.project-navigation { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 38px; border-top: 1px solid var(--rule); padding-top: 23px; }
+.project-navigation a { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; font-family: var(--serif); font-size: 17px; line-height: 1.4; }
+.project-navigation a:hover > span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.project-navigation .arrow { width: 15px; height: 15px; }
+.return-link { display: inline-flex; align-items: center; justify-content: flex-start; gap: 12px; font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 12px; }
+.not-found { padding-top: 70px; flex: 1; }
+.not-found h1 { font-family: var(--serif); font-size: 48px; letter-spacing: -.04em; margin-bottom: 30px; }
+.media-block { margin: 0; }
+.media-block img, .media-block video, .media-block iframe { display: block; width: 100%; border: 0; }
+.media-block iframe { aspect-ratio: 16/9; }
+.media-block figcaption { margin-top: 12px; font-size: 13px; line-height: 1.7; color: var(--muted); }
+.media-transcript { margin-top: 14px; font-size: 13px; line-height: 1.7; }
+.media-transcript summary { cursor: pointer; }
+.media-transcript p { margin-top: 12px; white-space: pre-line; }
+
+@media (min-width: 1101px) {
+  .exhibition { transform: translateX(clamp(0px,calc((100vw - 1100px) * .15),52px)); }
+}
+@media (min-width: 1500px) and (min-height: 900px) {
+  .exhibition { width: min(1300px,calc((100svh - 220px)*1.9),100%); height: min(700px,calc(100svh - 220px)); }
+  .exhibit-caption p { font-size: 14px; }
+  .cv-page { padding-top: 40px; }
+  .cv-project + .cv-project { margin-top: 23px; }
+  .cv-project-description { font-size: 14px; }
+}
+@media (max-height: 800px) and (min-width: 1101px) {
+  .site-header { padding-top: 23px; padding-bottom: 12px; }
+  .identity-name { font-size: 37px; }
+  .exhibition { width: min(1120px,calc((100svh - 180px)*1.9),100%); height: calc(100svh - 180px); min-height: 400px; --gap: 8px; }
+  .exhibit-caption h2 { font-size: 21px; }
+  .exhibit-caption p { font-size: 13px; line-height: 1.6; margin-top: 10px; }
+  .exhibit--dku-campus-tour .exhibit-caption h2 { font-size: 20px; }
+  .exhibit--dku-campus-tour .exhibit-caption p { margin-top: 5px; }
+  .home-footer { padding-top: 10px; padding-bottom: 18px; }
+  .cv-page { padding-top: 21px; }
+  .cv-introduction h1 { font-size: 30px; }
+  .cv-section { margin-top: 25px; }
+  .cv-project + .cv-project { margin-top: 13px; }
+}
+@media (max-width: 1100px) {
+  .home-page { display: block; }
+  .exhibition { width: min(850px,100%); height: auto; min-height: 0; margin: 28px auto 20px; grid-template-columns: 1fr 1fr; grid-template-rows: none; gap: 35px 28px; }
+  .exhibit { display: block; min-width: 0; grid-area: auto; aspect-ratio: auto; align-self: auto; }
+  .exhibit-link { display: block; height: auto; }
+  .exhibit-image { width: 100%; height: auto; aspect-ratio: 1.4; }
+  .exhibit--pcg-project .exhibit-image, .exhibit--mixed-lives .exhibit-image { aspect-ratio: 1.13; }
+  .exhibit--mixed-lives .exhibit-image { aspect-ratio: 8/9; }
+  .exhibit:nth-child(1) { padding-top: 40px; }
+  .exhibit-caption, .exhibit--emotional-vacuum .exhibit-caption, .exhibit--pcg-project .exhibit-caption, .exhibit--mixed-lives .exhibit-caption, .exhibit--dku-campus-tour .exhibit-caption { position: static; transform: none; width: 100%; max-width: 100%; padding: 0; margin-top: 17px; }
+  .exhibit-caption h2, .exhibit--dku-campus-tour .exhibit-caption h2 { font-size: 25px; }
+  .exhibit-caption p { font-size: 13px; margin-top: 8px; max-width: 360px; }
+  .home-footer { margin-top: auto; padding-top: 25px; }
+  .cv-page { gap: 45px; padding-top: 30px; }
+  .skills-list > div { grid-template-columns: 1fr; gap: 3px; }
+  .cv-project-link h3 { font-size: 23px; }
+  .experience-entry > div { display: block; }
+  .experience-entry span { display: block; margin-top: 2px; }
+  .project-navigation { gap: 22px; }
+  .project-navigation a { font-size: 15px; }
+}
+@media (max-width: 650px) {
+  :root { --gutter: 23px; }
+  .site-header { padding-top: 25px; padding-bottom: 13px; align-items: flex-start; gap: 16px; }
+  .identity-name { font-size: clamp(26px,7.8vw,32px); }
+  .identity-subtitle { font-size: 11px; margin-top: 6px; }
+  .header-link { min-width: 71px; min-height: 38px; padding: 9px 11px; font-size: 12px; gap: 14px; margin-top: 0; }
+  .header-link .arrow { width: 15px; height: 15px; }
+  .exhibition { display: flex; flex-direction: column; margin-block: 25px 20px; gap: 36px; }
+  .exhibit { width: 100%; }
+  .exhibit:nth-child(1) { padding-top: 0; }
+  .exhibit-image { aspect-ratio: 1.45; }
+  .exhibit--pcg-project .exhibit-image, .exhibit--mixed-lives .exhibit-image { aspect-ratio: 1.3; }
+  .exhibit--mixed-lives .exhibit-image { aspect-ratio: 8/9; }
+  .exhibit-caption h2, .exhibit--dku-campus-tour .exhibit-caption h2 { font-size: 26px; }
+  .exhibit-caption p { font-size: 14px; line-height: 1.65; max-width: 100%; margin-top: 9px; }
+  .home-footer { padding-top: 22px; padding-bottom: 27px; }
+  .contact-link { font-size: 11px; gap: 20px; width: 100%; }
+  .contact-link .arrow { width: 16px; height: 16px; }
+  .cv-page { grid-template-columns: 1fr; gap: 35px; padding-top: 27px; padding-bottom: 35px; }
+  .cv-introduction h1 { font-size: 34px; max-width: 340px; }
+  .cv-introduction > p { font-size: 14px; }
+  .cv-email { font-size: 12px; }
+  .cv-section { margin-top: 28px; }
+  .cv-section-heading { flex-wrap: wrap; gap: 8px; }
+  .education-entry h3 { font-size: 16px; }
+  .education-entry p, .skills-list dd { font-size: 14px; }
+  .skills-list > div { grid-template-columns: 125px minmax(0,1fr); gap: 14px; }
+  .skills-list dt { font-size: 12px; }
+  .cv-work { border-top: 1px solid var(--rule); padding-top: 28px; }
+  .cv-project-link h3 { font-size: 26px; }
+  .cv-project + .cv-project { margin-top: 25px; }
+  .cv-role { font-size: 12px; margin-top: 8px; }
+  .cv-project-description { font-size: 14px; line-height: 1.7; margin-top: 8px; }
+  .cv-experience { margin-top: 30px; padding-top: 24px; }
+  .experience-entry { margin-top: 18px; }
+  .experience-entry h3 { font-size: 14px; }
+  .experience-entry span { font-size: 11px; }
+  .experience-entry p { font-size: 13px; }
+  .project-page { padding-bottom: 25px; }
+  .project-canvas { min-height: 260px; }
+  .project-navigation { grid-template-columns: 1fr; gap: 0; padding-top: 10px; }
+  .project-navigation a { font-size: 21px; padding-block: 15px; }
+  .not-found h1 { font-size: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+@media print {
+  .site-header nav, .skip-link { display: none; }
+  .site-shell { padding-inline: 15px; }
+  .cv-page { display: block; }
+  .cv-column + .cv-column { margin-top: 25px; }
+  .cv-project, .education-entry { break-inside: avoid; }
+}
