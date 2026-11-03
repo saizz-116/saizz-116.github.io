@@ -16,7 +16,7 @@ Keep `material/`, `.qa/`, `.preview/`, local environment files, private CV origi
 
 On this Windows computer, double-click **`Start Portfolio.cmd`** in this folder. It builds the latest source, starts the preview in the background, and opens [the local homepage](http://127.0.0.1:4173/). You can close the launcher window after it finishes. Running it again reuses the existing preview server.
 
-After restarting Windows, run the launcher again. If the browser says **connection refused**, start the launcher before refreshing. This address works only on this computer. The site has not been published online. Preview logs are saved in `.preview/server.log`.
+After restarting Windows, run the launcher again. If the browser says **connection refused**, start the launcher before refreshing. This local address works only on this computer. The published site is [saizz-116.github.io](https://saizz-116.github.io/). Preview logs are saved in `.preview/server.log`.
 
 The launcher needs installed dependencies and Node.js 22.12 or newer. It can use the Codex bundled Node.js runtime on this computer when Node is not on `PATH`.
 
