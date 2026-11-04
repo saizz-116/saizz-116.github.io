@@ -7,6 +7,7 @@ import { coverImageSizes } from '../data/cover-images';
 import type { Project } from '../types';
 import { completeLayout, isFrameItem, itemKinds } from './layout';
 import type { LayoutDocument, LayoutItemId } from './layout';
+import { preloadPCGMedia } from '../components/usePCGMedia';
 
 interface LayoutSceneProps {
   layout: LayoutDocument;
@@ -42,7 +43,9 @@ export function LayoutScene({ layout, editing = false, chromeScale = 1, selected
     if (editing) return <div key={id} {...shared} data-selected={selectedId === id}
       role="button" aria-label={label} aria-pressed={selectedId === id} tabIndex={0}
       onPointerDown={event => onItemPointerDown?.(id, event)} onKeyDown={event => onItemKeyDown?.(id, event)}>{content}</div>;
-    if (to) return <Link key={id} {...shared} to={to} aria-label={label}>{content}</Link>;
+    if (to) return <Link key={id} {...shared} to={to} aria-label={label}
+      onPointerEnter={to === '/work/pcg-project' ? () => { void preloadPCGMedia().catch(() => {}); } : undefined}
+      onFocus={to === '/work/pcg-project' ? () => { void preloadPCGMedia().catch(() => {}); } : undefined}>{content}</Link>;
     if (href) return <a key={id} {...shared} href={href}>{content}</a>;
     return <div key={id} {...shared}>{content}</div>;
   };

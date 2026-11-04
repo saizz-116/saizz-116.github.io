@@ -170,11 +170,6 @@ function ProjectPage() {
     <>
       <PageMeta title={project.title} description={project.summary} />
       <main className={`project-page${project.slug === 'pcg-project' ? ' project-page--pcg' : ''}`} id="main" tabIndex={-1}>
-        {project.slug === 'pcg-project' && <div className="pcg-texture-background" aria-hidden="true">
-          <div className="pcg-texture-panel pcg-texture-panel--mosaic" />
-          <div className="pcg-texture-panel pcg-texture-panel--roof" />
-          <div className="pcg-texture-panel pcg-texture-panel--wall" />
-        </div>}
         {project.slug === 'pcg-project' ? <PCGProjectOverview project={project} /> : <><header className="project-heading">
           <div className="project-heading-text">
             <h1>{project.title}</h1>

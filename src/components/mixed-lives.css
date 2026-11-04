@@ -52,6 +52,7 @@
   font-size: 15px;
   line-height: 1.85;
 }
+.ml-introduction-copy > .ml-update-note { margin-top: 18px; color: var(--ml-muted); font-size: 13px; line-height: 1.6; }
 .ml-introduction .video-play-button {
   --video-play-surface: var(--ml-surface);
   --video-play-muted: var(--ml-muted);

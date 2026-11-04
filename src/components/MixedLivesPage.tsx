@@ -46,6 +46,7 @@ export default function MixedLivesPage({ project }: { project: Project }) {
             <h1>{project.title}</h1>
             <div className="ml-introduction-copy">
               <p>A hand-drawn narrative cocktail game set across seven nights at a bar. Read each guest’s request, combine spirits and ingredients, and follow visual feedback for taste, aroma, and texture as you mix and serve their drink.</p>
+              <p className="ml-update-note">Design detail to be updated here soon.</p>
               <VideoPlayButton label="Watch gameplay demo" duration={durationLabel} onClick={playFilm} />
             </div>
           </div>

@@ -1,34 +1,10 @@
-import { useId } from 'react';
-import images from '../data/pcg-images.json';
-
-// Native SVG clipping preserves supplied pixels; the architecture is never redrawn.
-const outlines = {
-  render: {
-    viewBox: '742 237 540 641', width: 1984, height: 957,
-    path: 'M766 365 C775 324 795 289 818 280 C840 277 858 264 877 266 C910 270 928 296 956 309 C983 307 1009 274 1044 266 C1072 271 1091 288 1119 304 C1136 297 1145 287 1158 290 C1191 292 1213 317 1227 365 L1217 783 L888 847 L767 777 Z',
-    balls: [[766,354,8],[775,328,8],[785,309,8],[800,291,8],[815,281,8],[830,279,8],[849,287,10],[862,304,10],[876,327,11],[887,353,11],[849,262,9],[876,259,9],[901,272,8],[925,289,7],[949,300,8],[974,297,9],[996,283,8],[1018,268,9],[1042,264,9],[1066,276,8],[1088,291,8],[1119,302,10],[1133,294,9],[1145,287,9],[1155,288,8],[1170,296,8],[1185,309,9],[1201,310,9],[1217,329,9],[1229,352,10]],
-    plants: [[885,841,33,23],[1230,782,33,18]],
-    alt: 'The Gaudí-inspired house with its turquoise wave-shaped roof and custom facade materials',
-  },
-  wire: {
-    viewBox: '150 150 550 660', width: 2048, height: 1422 * 2048 / 2772,
-    path: 'M170 280 C182 231 205 194 240 185 C277 174 286 183 305 183 C348 181 383 220 436 220 C478 215 507 196 550 199 C610 197 647 229 674 281 L669 726 L310 792 L168 725 Z',
-    balls: [[171,272,10],[180,244,10],[193,221,10],[208,200,10],[223,186,10],[238,179,10],[267,176,11],[278,200,10],[304,174,10],[338,179,10],[370,189,10],[391,200,10],[410,211,10],[434,214,10],[463,210,10],[490,204,10],[519,195,10],[548,191,10],[578,195,10],[607,205,10],[635,219,10],[655,240,11],[673,268,11]],
-    plants: [],
-    alt: 'The procedural house in Houdini, showing its wireframe and UV checker materials',
-  },
+const labels = {
+  render: 'The Gaudí-inspired house with its turquoise wave-shaped roof and custom facade materials',
+  wire: 'The procedural house in Houdini, showing its wireframe and UV checker materials',
 };
 
-export default function PCGHouseCutout({ variant }: { variant: keyof typeof outlines }) {
-  const id = `pcg-cutout-${useId().replace(/:/g, '')}`;
-  const shape = outlines[variant];
-  const source = (variant === 'render' ? images.render : images.process).srcSet.split(', ').at(-1)!.split(' ')[0];
-  return <svg className="pcg-house-cutout" viewBox={shape.viewBox} role="img" aria-label={shape.alt}>
-    <defs><clipPath id={id} clipPathUnits="userSpaceOnUse">
-      <path d={shape.path} />
-      {shape.balls.map(([cx, cy, r], index) => <circle key={`ball-${index}`} cx={cx} cy={cy} r={r} />)}
-      {shape.plants.map(([cx, cy, rx, ry], index) => <ellipse key={`plant-${index}`} cx={cx} cy={cy} rx={rx} ry={ry} />)}
-    </clipPath></defs>
-    <image href={source} x="0" y="0" width={shape.width} height={shape.height} clipPath={`url(#${id})`} />
-  </svg>;
+export default function PCGHouseCutout({ variant, source }: { variant: keyof typeof labels; source: string }) {
+  return <img className="pcg-house-cutout" src={source} alt={labels[variant]}
+    width={variant === 'render' ? 540 : 640} height={variant === 'render' ? 641 : 768}
+    loading="eager" fetchPriority="high" decoding="async" draggable={false} />;
 }

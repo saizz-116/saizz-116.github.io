@@ -177,9 +177,9 @@ a.layout-piece--cv:hover { background: #e6e5dc; }
 .project-page--pcg { isolation: isolate; position: relative; }
 .pcg-texture-background { position: absolute; z-index: -1; inset-block: 0; left: calc((100% - 100vw) / 2); width: 100vw; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); pointer-events: none; }
 .pcg-texture-panel { background-position: center; background-size: cover; }
-.pcg-texture-panel--mosaic { background-color: #d4d1bc; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), url('/media/pcg-project/mosaic-texture.webp'); }
-.pcg-texture-panel--roof { background-color: #76aeb7; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), url('/media/pcg-project/roof-texture.webp'); }
-.pcg-texture-panel--wall { background-color: #d5d9c1; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), url('/media/pcg-project/wall-texture.webp'); }
+.pcg-texture-panel--mosaic { background-color: #d4d1bc; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), var(--pcg-mosaic); }
+.pcg-texture-panel--roof { background-color: #76aeb7; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), var(--pcg-blue); }
+.pcg-texture-panel--wall { background-color: #d5d9c1; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), var(--pcg-wall); }
 .pcg-texture-panel--roof, .pcg-texture-panel--wall { background-size: 100% 100%, 320px 320px; background-repeat: no-repeat, repeat; background-position: center, left top; }
 .project-page--pcg .project-heading { padding-block: 12px 28px; }
 .project-page--pcg .project-navigation { border-top-color: #686d6666; }

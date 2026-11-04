@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom';
 import type { Project } from '../types';
 import MixedLivesCover from './MixedLivesCover';
 import { coverImageSizes } from '../data/cover-images';
+import { preloadPCGMedia } from './usePCGMedia';
 
 export default function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [failedSource, setFailedSource] = useState<string>();
   const showImage = project.cover.src && failedSource !== project.cover.src;
   return (
     <article className={`exhibit exhibit--${project.slug}`}>
-      <Link to={`/work/${project.slug}`} className="exhibit-link" aria-label={`Open ${project.title}`} style={{ '--cover-color': project.cover.color } as CSSProperties}>
+      <Link to={`/work/${project.slug}`} className="exhibit-link" aria-label={`Open ${project.title}`} style={{ '--cover-color': project.cover.color } as CSSProperties}
+        onPointerEnter={project.slug === 'pcg-project' ? () => { void preloadPCGMedia().catch(() => {}); } : undefined}
+        onFocus={project.slug === 'pcg-project' ? () => { void preloadPCGMedia().catch(() => {}); } : undefined}>
         <div className="exhibit-image">
           {project.slug === 'mixed-lives'
             ? <MixedLivesCover loading={index < 2 ? 'eager' : 'lazy'} />
