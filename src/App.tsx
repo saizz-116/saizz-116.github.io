@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { getProject, profile, projects } from './data/portfolio';
 import HomeGallery from './editor/HomeGallery';
@@ -29,7 +29,7 @@ function PageMeta({ title, description }: { title?: string; description: string 
 function RouteEffects() {
   const { pathname } = useLocation();
   const previous = useRef(pathname);
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (previous.current !== pathname) {
       document.getElementById('main')?.focus({ preventScroll: true });

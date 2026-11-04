@@ -6,24 +6,24 @@
   },
   "items": {
     "emotional-vacuum.cover": {
-      "x": 252.08,
-      "y": 64,
-      "width": 292.5,
-      "height": 214
+      "x": 271.94,
+      "y": 78.53,
+      "width": 272.64,
+      "height": 199.47
     },
     "emotional-vacuum.title": {
-      "x": 109.87,
-      "y": 82,
+      "x": 125.91,
+      "y": 41.52,
       "width": 116.13,
       "height": 58,
       "fontSize": 23.76,
       "lineHeight": 1.17
     },
     "emotional-vacuum.description": {
-      "x": 27.38,
-      "y": 155,
-      "width": 198.62,
-      "height": 87,
+      "x": 96.12,
+      "y": 105.35,
+      "width": 148.21,
+      "height": 109,
       "fontSize": 13,
       "lineHeight": 1.65
     },
@@ -34,16 +34,16 @@
       "height": 239.81
     },
     "pcg-project.title": {
-      "x": 951.06,
-      "y": 60.4,
+      "x": 956.41,
+      "y": 136.78,
       "width": 178,
       "height": 58,
       "fontSize": 23.76,
       "lineHeight": 1.17
     },
     "pcg-project.description": {
-      "x": 956.41,
-      "y": 122.76,
+      "x": 955.65,
+      "y": 202.19,
       "width": 178,
       "height": 110,
       "fontSize": 13,
@@ -56,8 +56,8 @@
       "height": 343.01
     },
     "mixed-lives.title": {
-      "x": 77.17,
-      "y": 430,
+      "x": 72.59,
+      "y": 428.47,
       "width": 150.6,
       "height": 30,
       "fontSize": 23.76,
@@ -65,7 +65,7 @@
     },
     "mixed-lives.description": {
       "x": 0,
-      "y": 472,
+      "y": 466.65,
       "width": 220.9,
       "height": 87,
       "fontSize": 13,
@@ -74,20 +74,20 @@
     "dku-campus-tour.cover": {
       "x": 554.58,
       "y": 288,
-      "width": 292.5,
-      "height": 214
+      "width": 285.19,
+      "height": 208.65
     },
     "dku-campus-tour.title": {
-      "x": 554.58,
-      "y": 516,
+      "x": 584.36,
+      "y": 512.94,
       "width": 330,
       "height": 28,
       "fontSize": 22,
       "lineHeight": 1.17
     },
     "dku-campus-tour.description": {
-      "x": 554.58,
-      "y": 553,
+      "x": 591.24,
+      "y": 543.83,
       "width": 330,
       "height": 44,
       "fontSize": 13,
