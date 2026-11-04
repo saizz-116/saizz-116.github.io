@@ -88,7 +88,6 @@ export default function EmotionalVacuumPage() {
       <header className="ev-masthead ev-container">
         <div>
           <Link className="ev-project-name" to="/work/emotional-vacuum">Emotional Vacuum</Link>
-          <Link className="ev-return" to="/">← Back to portfolio</Link>
         </div>
         <div className="ev-masthead-right"><span>Game design & development / 2026</span><Link to="/cv">CV ↗</Link></div>
       </header>

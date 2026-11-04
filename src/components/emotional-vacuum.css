@@ -7,8 +7,7 @@
 .ev-container { width: min(1280px, calc(100% - 112px)); margin-inline: auto; }
 .ev-masthead { display: flex; justify-content: space-between; align-items: flex-start; padding-block: 28px 25px; border-bottom: 1px solid var(--ev-line); }
 .ev-project-name { font-family: var(--ev-serif); font-size: 27px; letter-spacing: -.045em; }
-.ev-return { display: block; margin-top: 9px; font-size: 11px; color: var(--ev-muted); width: fit-content; }
-.ev-return:hover, .ev-page a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.ev-page a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
 .ev-masthead-right { display: flex; align-items: center; gap: 38px; padding-top: 6px; font-size: 11px; }
 .ev-masthead-right > span { color: var(--ev-muted); }
 .ev-masthead-right > a { font-size: 13px; border-bottom: 1px solid var(--ev-line); padding-bottom: 8px; }

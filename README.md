@@ -38,7 +38,7 @@ The entry and save API are available only on the loopback development/preview se
 
 ## Current design and content rules
 
-The homepage follows the owner's sketch: a landscape composition designed to fit one desktop screen, with four asymmetrical project cards. The work and the owner's name are the focus. The current scope is **desktop development and desktop QA only**; do not spend this iteration tuning phone layouts or make mobile review a completion requirement.
+The desktop homepage follows the owner's sketch: a landscape composition designed to fit one screen, with four asymmetrical project cards. The work and the owner's name are the focus. Support mobile as well: at widths up to 1100px, reflow the homepage into readable project cards instead of shrinking the saved desktop canvas. Phones use one column, tablets use two. Keep the saved desktop coordinates intact.
 
 The gallery keeps its irregular arrangement and shifts right by approximately 37–52 px across typical 1346–1920 px desktop widths. The offset is bounded so right-side captions remain visible. The outside Mixed Lives heading stays on one line in a wider caption column; it is separate from the handwritten title within the artwork.
 
@@ -48,8 +48,8 @@ Keep these rules when editing:
 - Mixed Lives uses the owner's supplied artwork. Emotional Vacuum uses the approved frame from the supplied demo. DKU Campus Explorer uses a real frame from the owner's gameplay recording. The house cover stays a solid color until real images are supplied. Do not generate substitute artwork or screenshots.
 - Do not add illustrative-placeholder badges, tiny placeholder labels, gratuitous taglines, or filler descriptions.
 - Emotional Vacuum and DKU Campus Explorer have authored case studies based on supplied project materials. Keep the other project pages empty apart from their heading and navigation until their materials are supplied.
-- On project pages, the project title replaces the name at the upper-left masthead position, with CV at the right and the return-home button directly below the title. Do not leave an empty brand row above it.
-- Verify desktop layout visually after layout changes: assess spacing, alignment, type hierarchy, and overall balance as well as functional behavior.
+- On desktop project pages, the title replaces the name at the upper-left masthead position, with CV at the right. The boxed Portfolio link sits in a reserved fixed left sidebar. Up to 1100px, use a fixed top navigation bar with Portfolio and CV instead, reserving space above the content and anchor targets. Do not leave an empty brand row above the title.
+- Verify desktop and mobile layouts visually after layout changes: assess spacing, alignment, type hierarchy, touch targets, horizontal overflow, and overall balance as well as functional behavior. The local graphical layout editor remains a desktop tool.
 - Keep the web CV concise and curated. Exclude GPA, scholarships, and telephone numbers.
 - Do not publish the original CV PDF or add a download link to it. The public CV is HTML rendered from the curated content data.
 - Do not publish the website or push it to a remote repository without the owner's permission.
@@ -215,4 +215,4 @@ For a repository-connected Pages project:
 
 This site uses browser routes. [Cloudflare Pages provides a single-page application fallback](https://developers.cloudflare.com/pages/configuration/serving-pages/#single-page-application-spa-rendering) when there is no top-level `404.html`. Keep that behavior so refreshing a project route serves the app. Other static hosts need an equivalent fallback to `index.html` for routes that are not files.
 
-`public/_headers` supplies basic security headers and caching for generated assets. Before sharing, review the curated public CV, confirm that private source documents are absent from `public/` and `dist/`, run a production build, and check the routes at the desktop sizes under review. Mobile tuning is outside the current requested scope.
+`public/_headers` supplies basic security headers and caching for generated assets. Before sharing, review the curated public CV, confirm that private source documents are absent from `public/` and `dist/`, run a production build, and check the routes at both desktop and mobile sizes.

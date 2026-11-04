@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/portfolio';
 import { LayoutScene } from './LayoutScene';
@@ -9,7 +9,16 @@ import type { LayoutDocument } from './layout';
 // The background read still picks up changes saved in the local layout editor.
 let lastHomeLayout = emptyLayout;
 
+const desktopQuery = '(min-width: 1101px)';
+function subscribeToDesktop(onChange: () => void) {
+  const query = window.matchMedia(desktopQuery);
+  query.addEventListener('change', onChange);
+  return () => query.removeEventListener('change', onChange);
+}
+const isDesktop = () => window.matchMedia(desktopQuery).matches;
+
 export default function HomeGallery() {
+  const desktop = useSyncExternalStore(subscribeToDesktop, isDesktop);
   const [layout, setLayout] = useState<LayoutDocument>(() => lastHomeLayout);
   const [scale, setScale] = useState(1);
   const stage = useRef<HTMLElement>(null);
@@ -29,8 +38,8 @@ export default function HomeGallery() {
     const observer = new ResizeObserver(measure);
     observer.observe(node);
     return () => observer.disconnect();
-  }, [layout]);
-  const custom = Object.keys(layout.items).length > 0;
+  }, [layout, desktop]);
+  const custom = desktop && Object.keys(layout.items).length > 0;
   const aspect = layout.canvas.width / layout.canvas.height;
   return (
     <section ref={stage} className={`exhibition${custom ? ' exhibition--custom' : ''}`} aria-label="Selected projects"

@@ -71,6 +71,17 @@ function Header() {
   );
 }
 
+function ProjectPortfolioNav() {
+  return (
+    <nav className="project-side-nav" aria-label="Project navigation">
+      <Link className="project-back-link" to="/" aria-label="Back to portfolio">
+        <span>Portfolio</span><Arrow back />
+      </Link>
+      <Link className="project-mobile-cv" to="/cv">CV<Arrow /></Link>
+    </nav>
+  );
+}
+
 function Home() {
   return (
     <>
@@ -161,7 +172,6 @@ function ProjectPage() {
         <header className="project-heading">
           <div className="project-heading-text">
             <h1>{project.title}</h1>
-            <Link className="project-return" to="/"><span aria-hidden="true">←</span>Back to home</Link>
           </div>
           <nav aria-label="Main navigation"><Link className="header-link" to="/cv">CV<Arrow /></Link></nav>
         </header>
@@ -188,11 +198,13 @@ function NotFound() {
 export default function App() {
   const { pathname: routePathname } = useLocation();
   const pathname = routePathname.replace(/\/+$/, '') || '/';
+  const isProject = pathname.startsWith('/work/');
   if (pathname === '/edit') return <LayoutEditor />;
   return (
-    <div className={`site-shell${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}`}>
+    <div className={`site-shell${isProject ? ' site-shell--project' : ''}${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}`}>
       <a className="skip-link" href="#main">Skip to content</a>
       <RouteEffects /><Header />
+      {isProject && <ProjectPortfolioNav />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cv" element={<CV />} />
