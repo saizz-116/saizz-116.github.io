@@ -6,6 +6,9 @@ import LayoutEditor from './editor/LayoutEditor';
 import { isLocalEditorHost } from './editor/layout';
 import EmotionalVacuumPage from './components/EmotionalVacuumPage';
 import DKUCampusExplorerPage from './components/DKUCampusExplorerPage';
+import PCGProjectOverview from './components/PCGProjectOverview';
+import ProjectLayoutLayer from './editor/ProjectLayoutLayer';
+import MixedLivesPage from './components/MixedLivesPage';
 import { useDesktopLayout } from './editor/useDesktopLayout';
 import ProjectHeader from './components/ProjectHeader';
 import { useNavigationGeometry } from './components/useNavigationGeometry';
@@ -162,16 +165,22 @@ function ProjectPage() {
   if (!project) return <NotFound />;
   if (project.slug === 'emotional-vacuum') return <><PageMeta title={project.title} description="An alternative-controller game exploring emotional suppression through collection, containment, and release. A collaborative design and development case study by Xueyao Jiang." /><EmotionalVacuumPage /></>;
   if (project.slug === 'dku-campus-tour') return <><PageMeta title={project.title} description="A two-person campus exploration game connecting places, conversations, and everyday life at Duke Kunshan University. Design and interaction work by Xueyao Jiang." /><DKUCampusExplorerPage /></>;
+  if (project.slug === 'mixed-lives') return <><PageMeta title={project.title} description={project.summary} /><MixedLivesPage project={project} /></>;
   return (
     <>
       <PageMeta title={project.title} description={project.summary} />
-      <main className="project-page" id="main" tabIndex={-1}>
-        <header className="project-heading">
+      <main className={`project-page${project.slug === 'pcg-project' ? ' project-page--pcg' : ''}`} id="main" tabIndex={-1}>
+        {project.slug === 'pcg-project' && <div className="pcg-texture-background" aria-hidden="true">
+          <div className="pcg-texture-panel pcg-texture-panel--mosaic" />
+          <div className="pcg-texture-panel pcg-texture-panel--roof" />
+          <div className="pcg-texture-panel pcg-texture-panel--wall" />
+        </div>}
+        {project.slug === 'pcg-project' ? <PCGProjectOverview project={project} /> : <><header className="project-heading">
           <div className="project-heading-text">
             <h1>{project.title}</h1>
           </div>
         </header>
-        <div className="project-canvas" />
+        <div className="project-canvas" /></>}
         <nav className="project-navigation" aria-label="Other projects">
           {projects.filter(item => item.id !== project.id).map(item => (
             <Link to={`/work/${item.slug}`} key={item.id}><span>{item.title}</span><Arrow /></Link>
@@ -198,7 +207,7 @@ export default function App() {
   const currentProject = isProject ? getProject(pathname.split('/')[2]) : undefined;
   if (pathname === '/edit') return <LayoutEditor />;
   return (
-    <div className={`site-shell${pathname === '/' ? ' site-shell--home' : ''}${pathname === '/cv' ? ' site-shell--cv' : ''}${isProject ? ' site-shell--project' : ''}${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}`}>
+    <div className={`site-shell${pathname === '/' ? ' site-shell--home' : ''}${pathname === '/cv' ? ' site-shell--cv' : ''}${isProject ? ' site-shell--project' : ''}${pathname === '/work/pcg-project' ? ' site-shell--pcg' : ''}${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}${pathname === '/work/mixed-lives' ? ' site-shell--ml' : ''}`}>
       <a className="skip-link" href="#main">Skip to content</a>
       <RouteEffects />{!isProject && <Header />}
       {currentProject && <ProjectHeader key={currentProject.slug} project={currentProject} />}
@@ -211,6 +220,7 @@ export default function App() {
         <Route path="/contact" element={<Navigate replace to="/cv" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {currentProject && <ProjectLayoutLayer key={currentProject.slug} slug={currentProject.slug} />}
     </div>
   );
 }

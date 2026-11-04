@@ -1,0 +1,14 @@
+{
+  "render": {
+    "src": "/media/pcg-project/house-render-800-7a6713d3fc.webp",
+    "srcSet": "/media/pcg-project/house-render-480-ef52af7838.webp 480w, /media/pcg-project/house-render-800-7a6713d3fc.webp 800w, /media/pcg-project/house-render-1200-dcd488e29c.webp 1200w, /media/pcg-project/house-render-1600-b7846b4bc3.webp 1600w",
+    "width": 1984,
+    "height": 957
+  },
+  "process": {
+    "src": "/media/pcg-project/house-process-1400-522ddd1a26.webp",
+    "srcSet": "/media/pcg-project/house-process-800-ab61df0ae7.webp 800w, /media/pcg-project/house-process-1400-522ddd1a26.webp 1400w, /media/pcg-project/house-process-2200-eb4fcff3ed.webp 2200w",
+    "width": 2772,
+    "height": 1422
+  }
+}

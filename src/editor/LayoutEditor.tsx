@@ -136,7 +136,7 @@ export default function LayoutEditor() {
       fetch('/__portfolio-editor/status', { cache: 'no-store', signal: controller.signal }).then(async response => {
         if (!response.ok) throw new Error('编辑服务尚未启动，请重新运行 Start Portfolio.cmd。');
         const status: unknown = await response.json();
-        if (!status || typeof status !== 'object' || !('enabled' in status) || status.enabled !== true || !('token' in status) || typeof status.token !== 'string' || !('version' in status) || status.version !== 2) {
+        if (!status || typeof status !== 'object' || !('enabled' in status) || status.enabled !== true || !('token' in status) || typeof status.token !== 'string' || !('version' in status) || status.version !== 3) {
           throw new Error('编辑服务尚未启动，请重新运行 Start Portfolio.cmd。');
         }
         return status.token;
@@ -374,6 +374,7 @@ export default function LayoutEditor() {
     <main className="editor-shell">
       <header className="editor-toolbar">
         <h1>完整首页排版</h1>
+        <button type="button" onClick={() => { if (!dirty || window.confirm('还有未保存的首页调整，确定切换吗？')) navigate('/work/pcg-project?edit=layout'); }}>项目页排版</button>
         <div className="editor-history">
           <button type="button" onClick={undo} disabled={!past.length || saving} title="Ctrl+Z">撤销</button>
           <button type="button" onClick={redo} disabled={!future.length || saving} title="Ctrl+Shift+Z">重做</button>

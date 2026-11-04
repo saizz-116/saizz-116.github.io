@@ -5,6 +5,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import { dirname, join } from 'node:path';
 import type { Plugin } from 'vite';
 import { parseLayoutDocument } from '../src/editor/layout';
+import { emptyProjectLayouts, isProjectSlug, parseProjectLayouts, parseProjectPage } from '../src/editor/project-layout';
 
 const apiRoot = '/__portfolio-editor/';
 const maxBodyBytes = 64 * 1024;
@@ -65,9 +66,9 @@ function readJson(req: IncomingMessage): Promise<unknown> {
   });
 }
 
-async function persistLayout(root: string, outDir: string, layout: unknown) {
-  const source = join(root, 'public', 'home-layout.json');
-  const output = join(outDir, 'home-layout.json');
+async function persistLayout(root: string, outDir: string, layout: unknown, filename = 'home-layout.json') {
+  const source = join(root, 'public', filename);
+  const output = join(outDir, filename);
   const files = existsSync(outDir) ? [source, output] : [source];
   const suffix = `.tmp-${randomBytes(8).toString('hex')}`;
   const data = `${JSON.stringify(layout, null, 2)}\n`;
@@ -100,7 +101,7 @@ async function persistLayout(root: string, outDir: string, layout: unknown) {
   }
 }
 
-/** Only the loopback Vite server can write the one public layout configuration. */
+/** Only the loopback Vite server can write the fixed public layout configurations. */
 export function layoutEditorPlugin(): Plugin {
   const token = randomBytes(32).toString('hex');
   let projectRoot = '';
@@ -118,10 +119,11 @@ export function layoutEditorPlugin(): Plugin {
     }
 
     if (pathname === `${apiRoot}status` && req.method === 'GET') {
-      send(res, 200, { enabled: true, token, version: 2 });
+      send(res, 200, { enabled: true, token, version: 3 });
       return;
     }
-    if (pathname !== `${apiRoot}layout`) { send(res, 404, { error: 'Not found.' }); return; }
+    const projectPage = pathname === `${apiRoot}project-layout`;
+    if (pathname !== `${apiRoot}layout` && !projectPage) { send(res, 404, { error: 'Not found.' }); return; }
     if (req.method !== 'PUT') {
       res.setHeader('Allow', 'PUT');
       send(res, 405, { error: 'Method not allowed.' });
@@ -142,6 +144,26 @@ export function layoutEditorPlugin(): Plugin {
     }
     try {
       const payload = await readJson(req);
+      if (projectPage) {
+        if (!payload || typeof payload !== 'object' || !('project' in payload) || typeof payload.project !== 'string'
+          || !isProjectSlug(payload.project) || !('layout' in payload)) { send(res, 400, { error: 'Invalid project.' }); return; }
+        const page = parseProjectPage(payload.layout);
+        if (!page) { send(res, 400, { error: 'Invalid project layout values.' }); return; }
+        const slug = payload.project;
+        const write = saveQueue.then(async () => {
+          let existing = emptyProjectLayouts;
+          try {
+            const parsed = parseProjectLayouts(JSON.parse(await readFile(join(projectRoot, 'public/project-layout.json'), 'utf8')));
+            if (!parsed) throw new Error('Existing project layout is invalid.');
+            existing = parsed;
+          } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+          await persistLayout(projectRoot, outputDirectory, { version: 1, pages: { ...existing.pages, [slug]: page } }, 'project-layout.json');
+        });
+        saveQueue = write.catch(() => {});
+        await write;
+        send(res, 200, { ok: true, layout: page });
+        return;
+      }
       const layout = parseLayoutDocument(payload && typeof payload === 'object' && 'layout' in payload ? payload.layout : null);
       if (!layout) { send(res, 400, { error: 'Invalid layout values.' }); return; }
       const write = saveQueue.then(() => persistLayout(projectRoot, outputDirectory, layout));

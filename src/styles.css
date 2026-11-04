@@ -156,6 +156,8 @@ a.layout-piece--cv:hover { background: #e6e5dc; }
 .project-header-arrow { width: 1.4em; height: 1.4em; flex-shrink: 0; }
 .project-header-arrow--back { transform: rotate(180deg); }
 .project-header-space { flex-shrink: 0; }
+.project-editor-entry { position: fixed; z-index: 45; bottom: 18px; left: 24px; padding: 10px 16px; background: #f5f3eb; border: 1px solid #858d7c; color: #34432e; font-size: 13px; box-shadow: 0 2px 12px #00000012; }
+@media (max-width: 1100px) { .project-editor-entry { display: none; } }
 .project-header-center { position: absolute; display: flex; align-items: center; min-width: 0; }
 .project-header-heading { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .project-header-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--serif); font-size: var(--project-title-size, 27px); line-height: 1.2; letter-spacing: -.04em; }
@@ -172,6 +174,15 @@ a.layout-piece--cv:hover { background: #e6e5dc; }
 .project-heading h1 { font-family: var(--serif); font-size: clamp(36px,3.25vw,52px); line-height: 1.1; letter-spacing: -.04em; }
 .project-heading > nav { flex-shrink: 0; }
 .project-canvas { flex: 1; min-height: 250px; }
+.project-page--pcg { isolation: isolate; position: relative; }
+.pcg-texture-background { position: absolute; z-index: -1; inset-block: 0; left: calc((100% - 100vw) / 2); width: 100vw; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); pointer-events: none; }
+.pcg-texture-panel { background-position: center; background-size: cover; }
+.pcg-texture-panel--mosaic { background-color: #d4d1bc; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), url('/media/pcg-project/mosaic-texture.webp'); }
+.pcg-texture-panel--roof { background-color: #76aeb7; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), url('/media/pcg-project/roof-texture.webp'); }
+.pcg-texture-panel--wall { background-color: #d5d9c1; background-image: linear-gradient(#f2f1ec66, #f2f1ec66), url('/media/pcg-project/wall-texture.webp'); }
+.pcg-texture-panel--roof, .pcg-texture-panel--wall { background-size: 100% 100%, 320px 320px; background-repeat: no-repeat, repeat; background-position: center, left top; }
+.project-page--pcg .project-heading { padding-block: 12px 28px; }
+.project-page--pcg .project-navigation { border-top-color: #686d6666; }
 .project-navigation { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 38px; border-top: 1px solid var(--rule); padding-top: 23px; }
 .project-navigation a { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; font-family: var(--serif); font-size: 17px; line-height: 1.4; }
 .project-navigation a:hover > span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }

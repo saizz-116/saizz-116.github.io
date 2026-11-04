@@ -36,6 +36,16 @@ The complete homepage uses a version-2, 1440 × 900 design canvas with sixteen i
 
 The entry and save API are available only on the loopback development/preview server. A published static site displays the saved composition without an editing entry or writable service. The save API accepts only the fixed layout file, validates every element, and checks the local host, origin, and session token.
 
+## Edit project pages visually
+
+Open a project in the local preview and choose **编辑本页排版** at the lower left. The homepage editor also has a **项目页排版** button. Direct entry: [PCG project editor](http://127.0.0.1:4173/work/pcg-project/?edit=layout). The bottom toolbar switches between all four projects.
+
+Click a heading, paragraph, caption, image, video, or section to select it. Drag the element or its green **移动** tab to reposition it; images have handles on all four corners and sides, while text and content blocks have width handles and natural height. Image resizing preserves the opposite edge/corner even for the PCG houses anchored at the bottom right. Use the settings panel for width, offsets, typography, line height, bottom spacing, and container gaps. **选择外层区块** selects a containing section. Search the element list to jump through long case studies. Move the panel to the other side or collapse it if it covers the artwork. Arrow keys move one pixel; Shift moves ten; Ctrl+Z/Shift+Ctrl+Z undo/redo. Page links and video playback are paused during desktop editing so clicking selects content.
+
+**保存** writes the current project's settings to `public/project-layout.json` and the running preview's matching `dist/` file. Saves merge only that project into the document, preserving other projects. **恢复此元素** clears a selection's changes; **恢复本页** clears the current project. Both support undo and require saving. Temporary verification adjustments have been removed. Include `public/project-layout.json` when handing off or publishing the site. Changes are local until an authorized deployment; the public site has no editing entry or writable API.
+
+Adjustments apply only above 1100px. Phone/tablet pages retain their existing automatic layouts. The tool edits layout, not project text or artwork. It uses semantic element keys in `src/editor/project-layout.ts`; changing source copy/markup can give that element a new key, so review saved custom layouts after content changes. The local save API validates a fixed set of numeric style properties, project slugs, origins, and session tokens; it never accepts arbitrary CSS or filesystem paths. The editor UI is loaded only when the local editing mode is opened. Run the launcher once to upgrade an older preview service to API version 3.
+
 ## Current design and content rules
 
 The desktop homepage follows the owner's sketch: a landscape composition designed to fit one screen, with four asymmetrical project cards. The work and the owner's name are the focus. Support mobile as well: at widths up to 1100px, reflow the homepage into readable project cards instead of shrinking the saved desktop canvas. Phones use one column, tablets use two. Keep the saved desktop coordinates intact.
@@ -134,9 +144,19 @@ Present the completed work with its owner-confirmed development period, Sep–Oc
 
 This iteration is prepared locally. The owner will handle GitHub deployment; do not commit or push as part of this task.
 
+## PCG project background
+
+The PCG detail page uses three equal vertical background panels, ordered left to right: mosaic, blue roof texture, and pale yellow wall. The supplied PNG originals stay in `material/pcg/`; only 768px WebP delivery copies are public. Re-export with `python scripts/prepare-pcg-textures.py` (Pillow required). The static CSS backgrounds load when the PCG page is rendered, with solid base colors while downloading.
+
+The blue and pale brown watercolor textures repeat as 320px tiles; CSS reuses each existing compressed image rather than downloading a larger composite. The project title stays directly on the background. The description and progress note each have a compact warm white backing with softly blurred edges, following their own text bounds instead of one large rectangular panel. Their group can be selected in the project layout editor.
+
+`PCGProjectOverview.tsx` provides the owner's temporary overview using their supplied introduction and technical-detail update notice. The two houses appear as a static, staggered composition: a smaller Houdini wireframe view behind a larger colored render. `PCGHouseCutout.tsx` applies native SVG silhouette clipping to the existing WebP pixels, removing the sky, floor, software interface, and node graph without generative reconstruction. Keep these masks aligned with the original screenshots if sources change. The clean rectangular render remains the homepage cover through `cover-images.ts`. Originals are preserved in `material/pcg/house-render.png` and `house-process.png`; run `python scripts/prepare-pcg-overview.py` to regenerate hashed WebP variants and `src/data/pcg-images.json`. No speculative case study or node-network panel is displayed. The old supplied cover stays intact.
+
 ## Mixed Lives cover
 
-`src/components/MixedLivesCover.tsx` displays the supplied PNG above a static merged export of the supplied PSD. Each image keeps its original 16:9 proportions; together they form an 8:9 cover. The owner canceled the bottle-floating effect; keep this artwork static. Desktop placement is defined in `src/styles.css`. The Mixed Lives detail page remains blank.
+`src/components/MixedLivesCover.tsx` displays the supplied PNG above a static merged export of the supplied PSD. Each image keeps its original 16:9 proportions; together they form an 8:9 homepage cover. The owner canceled the bottle-floating effect; keep this artwork static. Desktop placement is defined in `src/styles.css`.
+
+The Mixed Lives detail page uses `MixedLivesPage.tsx` and scoped `mixed-lives.css`: a dark background, title and factual gameplay introduction, the first supplied cover only, and a large native gameplay video. Design rationale and a longer case study are intentionally reserved for the owner's forthcoming writing. `scripts/prepare-mixed-lives-cover.py` exports the complete first PNG without cropping or repainting to sRGB `cover-one.webp` and `cover-one-800.webp`. The page plays `/media/mixed-lives/demo.mp4` with `/media/mixed-lives/demo-poster.webp`; retain the original recording under ignored `material/`.
 
 The browser loads optimized exports from `public/media/mixed-lives/`:
 

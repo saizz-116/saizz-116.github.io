@@ -1,0 +1,33 @@
+.site-shell--pcg { overflow-x: clip; }
+.project-page--pcg .pcg-texture-background { opacity: .66; }
+.pcg-overview { padding-block: 20px 46px; }
+.pcg-introduction { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(36px, 4vw, 64px); align-items: center; }
+.pcg-intro-copy { padding-block: 24px; }
+.pcg-intro-copy h1 { max-width: 15ch; font-family: var(--serif); font-size: clamp(38px, 3.8vw, 59px); font-weight: 400; line-height: 1.04; letter-spacing: -.045em; }
+.pcg-description { margin-top: 26px; }
+.pcg-description > p { position: relative; isolation: isolate; max-width: 51ch; font-size: 15px; line-height: 1.8; color: #394137; }
+.pcg-description > p::before { content: ''; position: absolute; z-index: -1; inset: -5px -7px; background: #faf9f2ed; filter: blur(10px); pointer-events: none; }
+.pcg-intro-copy .pcg-update-note { margin-top: 26px; padding-top: 18px; max-width: 39ch; border-top: 1px solid #aeb6a3; font-size: 13px; line-height: 1.65; color: #53604f; }
+.pcg-house-composition { position: relative; height: clamp(530px, 45vw, 680px); min-width: 0; }
+.pcg-house { position: absolute; margin: 0; }
+.pcg-house-cutout { display: block; width: 100%; height: auto; overflow: visible; }
+.pcg-house--wire { width: 46%; left: -3%; top: 4%; opacity: .88; filter: drop-shadow(4px 16px 12px #263b4029); }
+.pcg-house--render { width: 73%; right: -4%; bottom: 0; filter: drop-shadow(5px 24px 15px #33443030); }
+@media (min-width: 1600px) { .pcg-intro-copy h1 { font-size: 62px; } }
+@media (max-width: 1000px) and (min-width: 851px) {
+  .pcg-introduction { gap: 26px; grid-template-columns: 1fr 1fr; }
+  .pcg-description > p { font-size: 14px; }
+  .pcg-house-composition { height: 570px; }
+  .pcg-house--render { width: 88%; right: -8%; bottom: 4%; }
+  .pcg-house--wire { width: 63%; left: -5%; top: 5%; }
+}
+@media (max-width: 850px) {
+  .pcg-introduction { grid-template-columns: 1fr; gap: 10px; }
+  .pcg-intro-copy { padding-block: 12px; }
+  .pcg-intro-copy h1 { font-size: clamp(38px, 7vw, 54px); max-width: 18ch; }
+  .pcg-description > p { font-size: 15px; }
+  .pcg-overview { padding-block: 8px 30px; }
+  .pcg-house-composition { height: clamp(380px, 80vw, 650px); }
+  .pcg-house--wire { width: 46%; top: 5%; left: 0; }
+  .pcg-house--render { width: 69%; right: -2%; bottom: 0; }
+}
