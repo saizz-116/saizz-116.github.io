@@ -210,7 +210,7 @@ export default function App() {
     <div className={`site-shell${pathname === '/' ? ' site-shell--home' : ''}${pathname === '/cv' ? ' site-shell--cv' : ''}${isProject ? ' site-shell--project' : ''}${pathname === '/work/pcg-project' ? ' site-shell--pcg' : ''}${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}${pathname === '/work/mixed-lives' ? ' site-shell--ml' : ''}`}>
       <a className="skip-link" href="#main">Skip to content</a>
       <RouteEffects />{!isProject && <Header />}
-      {currentProject && <ProjectHeader key={currentProject.slug} project={currentProject} />}
+      {currentProject && <ProjectHeader key={`project-header:${currentProject.slug}`} project={currentProject} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cv" element={<CV />} />
@@ -220,7 +220,7 @@ export default function App() {
         <Route path="/contact" element={<Navigate replace to="/cv" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {currentProject && <ProjectLayoutLayer key={currentProject.slug} slug={currentProject.slug} />}
+      {currentProject && <ProjectLayoutLayer key={`project-layout:${currentProject.slug}`} slug={currentProject.slug} />}
     </div>
   );
 }
