@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { evContent } from '../data/emotionalVacuum';
 import { evEnvironment } from '../data/emotionalVacuumEnvironment';
+import VideoPlayButton from './VideoPlayButton';
 import './emotional-vacuum.css';
 
 const mediaRoot = '/media/emotional-vacuum/';
@@ -49,9 +50,12 @@ const creatures = [
 export default function EmotionalVacuumPage() {
   const [selectedImage, setSelectedImage] = useState<ImageDetail | null>(null);
   const [loadMoment, setLoadMoment] = useState<'early' | 'late'>('early');
-  const [filmRequest, setFilmRequest] = useState<{ start: number; serial: number } | null>(null);
+  const [filmRequest, setFilmRequest] = useState<{ start: number } | null>(null);
+  const [filmError, setFilmError] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const filmRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const pendingSeekRef = useRef<number | null>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -65,7 +69,17 @@ export default function EmotionalVacuumPage() {
   }, [selectedImage]);
 
   const playFrom = (time: number) => {
-    setFilmRequest(previous => ({ start: time, serial: (previous?.serial ?? 0) + 1 }));
+    pendingSeekRef.current = time;
+    setFilmRequest({ start: time });
+    const video = videoRef.current;
+    if (video) {
+      if (video.readyState >= 1) {
+        video.currentTime = time;
+        pendingSeekRef.current = null;
+      }
+      // Keep the native controls available if the browser requires another play gesture.
+      void video.play().catch(() => {});
+    }
     filmRef.current?.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
 
@@ -82,9 +96,9 @@ export default function EmotionalVacuumPage() {
       <section className="ev-hero ev-container" aria-labelledby="ev-title">
         <div className="ev-hero-copy">
           <p className="ev-kicker">An alternative-controller game</p>
-          <h1 id="ev-title">What we clear<br />away, <em>we carry.</em></h1>
+          <h1 id="ev-title">Emotional Vacuum</h1>
           <p className="ev-hero-description">An exploration of emotional suppression through collection, containment, and release.</p>
-          <a className="ev-text-link" href="#film"><span className="ev-play-icon" aria-hidden="true">▶</span> Watch the experience <span>4:41</span></a>
+          <VideoPlayButton label="Watch the experience" duration="4:41" onClick={() => playFrom(0)} />
         </div>
         <Photo file="hero.webp" alt="A player wearing a transparent backpack of emotional creatures and aiming a physical vacuum toward the game screen" priority className="ev-hero-image" onOpen={setSelectedImage} />
         <div className="ev-hero-index"><span>Body ↔ Screen</span><span>A familiar tool. A different kind of burden.</span></div>
@@ -115,11 +129,31 @@ export default function EmotionalVacuumPage() {
         <div className="ev-container">
           <div className="ev-film-heading"><div><p className="ev-kicker">The complete experience</p><h2 id="ev-film-heading">See the experience.</h2></div><span>Full project film / 4 min 41 sec</span></div>
           <div ref={filmRef} className="ev-film">
-            {filmRequest ? <iframe key={filmRequest.serial} src={`https://www.youtube-nocookie.com/embed/${youtubeVideoId}?autoplay=1&start=${filmRequest.start}&playsinline=1&rel=0&hl=en`} title="Emotional Vacuum — project film on YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" /> : <button type="button" className="ev-film-poster" onClick={() => playFrom(0)} aria-label="Play Emotional Vacuum on YouTube"><img src={`${mediaRoot}hero.webp`} alt="" width="1800" height="1014" loading="lazy" /><span className="ev-youtube-play"><span aria-hidden="true">▶</span><span>Play film on YouTube</span></span></button>}
+            {filmRequest ? <video
+              ref={videoRef}
+              src={`${mediaRoot}demo.mp4`}
+              poster={`${mediaRoot}hero.webp`}
+              aria-label="Emotional Vacuum — complete project film"
+              controls
+              autoPlay
+              playsInline
+              preload="metadata"
+              width="1600"
+              height="840"
+              onLoadedMetadata={event => {
+                const video = event.currentTarget;
+                if (pendingSeekRef.current !== null) {
+                  video.currentTime = pendingSeekRef.current;
+                  pendingSeekRef.current = null;
+                }
+                void video.play().catch(() => {});
+              }}
+              onError={() => setFilmError(true)}
+            /> : <button type="button" className="ev-film-poster" onClick={() => playFrom(0)} aria-label="Play Emotional Vacuum project film"><img src={`${mediaRoot}hero.webp`} alt="" width="1800" height="1014" loading="lazy" /><span className="ev-film-play"><span aria-hidden="true">▶</span><span>Play film</span></span></button>}
           </div>
+          {filmError && <p className="ev-film-error" role="status">This video could not be loaded. You can watch the full film on YouTube below.</p>}
           <div className="ev-video-bottom"><span>Jump to a moment</span><div className="ev-video-chapters">{[{ time: 10, label: 'Enter the room', stamp: '00:10' }, { time: 40, label: 'Body & screen', stamp: '00:40' }, { time: 175, label: 'Accumulation', stamp: '02:55' }, { time: 250, label: 'Release', stamp: '04:10' }].map(chapter => <button key={chapter.time} type="button" onClick={() => playFrom(chapter.time)} aria-label={`Play video from ${chapter.stamp}: ${chapter.label}`}><span>{chapter.stamp}</span>{chapter.label} ↗</button>)}</div></div>
           <a className="ev-youtube-link" href={`${youtubeWatchUrl}${filmRequest?.start ? `?t=${filmRequest.start}` : ''}`} target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
-          <details className="ev-film-description"><summary>Read a description of the film</summary><p>The film moves between first-person gameplay and people wearing the backpack and holding the vacuum. Red anger creatures, green tangled anxiety creatures, and blue sadness creatures appear in a bedroom. The room fills with mixed emotions and grows dark as the vacuum becomes overloaded. After a pause in darkness, moonlight appears at the window. A new physical gesture triggers fireworks, with the creatures’ eyes visible inside the bursts.</p></details>
         </div>
       </section>
 
@@ -132,20 +166,12 @@ export default function EmotionalVacuumPage() {
             <h3>{stage.title}</h3><p>{stage.text}</p>
           </li>)}</ol>
           <div className="ev-journey-note"><span>Design intention</span><p>Familiarity → apparent mastery → friction → interruption → curiosity → release</p></div>
-          <div className="ev-fireworks-showcase" aria-labelledby="ev-fireworks-heading">
-            <div className="ev-fireworks-heading"><div><p className="ev-kicker">The release sequence</p><h3 id="ev-fireworks-heading">Release, made visible.</h3></div><p>A rising spark opens into a radial burst, then falls away in trails. The movement gives release a direction and a rhythm.</p></div>
-            <div className="ev-fireworks-layout">
-              <div className="ev-gameplay-clip"><Photo file="fireworks-burst.webp" alt="Golden firework trails spreading outside the open bedroom window" caption="A moment of release. The sequence traces the launch, burst, and falling trails." onOpen={setSelectedImage} /><button type="button" className="ev-inline-film" onClick={() => playFrom(250)}>Watch the release in the film ↗</button></div>
-              <ol className="ev-burst-steps">{[{ file: 'fireworks-sequence-01.webp', title: '01 / Launch', alt: 'A rising red-gold spark leaving the vacuum nozzle' }, { file: 'fireworks-sequence-02.webp', title: '02 / Burst', alt: 'The firework opening into clear golden radial spokes' }, { file: 'fireworks-sequence-03.webp', title: '03 / Falling trails', alt: 'Golden firework trails descending and fading into the night' }].map(step => <li key={step.title}><Photo file={step.file} alt={step.alt} onOpen={setSelectedImage} /><span>{step.title}</span></li>)}</ol>
-            </div>
-          </div>
         </div>
       </section>
 
       <section className="ev-environment ev-container ev-section" id="environment" aria-labelledby="ev-environment-heading">
         <div className="ev-section-header"><div><SectionLabel number="03">Environment design / 3ds Max → Unity</SectionLabel><h2 id="ev-environment-heading">An ordinary room.<br /><em>A personal interior.</em></h2></div><p>I modeled the furniture and props in 3ds Max, then arranged the environment in Unity. Quiet materials, everyday objects, and hand-drawn references establish the world that the emotional creatures gradually transform.</p></div>
         <Photo className="ev-room-overview" file="room-overview.webp" alt="The bedroom environment with a modeled bed, round table, rug, bookshelves, books, plant, and hand-drawn film posters" caption="An inhabited bedroom: the bed, round table, rug, shelves, and small objects establish a familiar scale around the player." onOpen={setSelectedImage} />
-        <div className="ev-room-authorship"><span>Environment modeling · Scene arrangement · Hand-drawn illustration</span><p>{evEnvironment.artCredit}</p></div>
         <div className="ev-room-process"><div className="ev-prose">{evEnvironment.intro.map(paragraph => <p key={paragraph}>{paragraph}</p>)}<ul className="ev-room-palette" aria-label="Environment palette and material direction"><li><span className="ev-swatch ev-swatch--cream" aria-hidden="true" />Cream walls</li><li><span className="ev-swatch ev-swatch--wood" aria-hidden="true" />Warm wood</li><li><span className="ev-swatch ev-swatch--sage" aria-hidden="true" />Muted textiles</li><li><span className="ev-swatch ev-swatch--grey" aria-hidden="true" />Matte surfaces</li></ul></div><Photo className="ev-gameplay-clip" file="room-gameplay-still.webp" alt="A closer gameplay view of the bedside wall, hand-drawn posters, and bedroom furnishings" caption="The room as encountered through play, captured from the Unity gameplay recording." onOpen={setSelectedImage} /></div>
         <div className="ev-room-details"><Photo file="room-detail.webp" alt="The modeled bookshelf, books, potted plant, and floor lamp under warm room lighting" caption="Furniture and material detail. Repeated books, a small plant, warm wood, and softened surfaces give the room a quiet, lived-in character." onOpen={setSelectedImage} /><Photo file="room-window.webp" alt="The same bedroom darkened, with moonlight illuminating the window and nearby surfaces" caption="Lighting becomes guidance. As the room darkens, moonlight redirects attention toward the window and the release sequence." onOpen={setSelectedImage} /></div>
         <div className="ev-posters-heading"><div><p className="ev-kicker">Illustration within the environment</p><h3>Personal references,<br /><em>redrawn by hand.</em></h3><p>Hand-drawn film references give the room a personal, cinematic layer. Their imagery offers connections with perception, inner experience, and the unease of a familiar domestic space.</p></div><Photo file="posters-in-room.webp" alt="Detail of all three hand-drawn film posters placed on the bedroom walls" caption="From drawing to environment: all three artworks appear on the bedroom walls." onOpen={setSelectedImage} /></div>

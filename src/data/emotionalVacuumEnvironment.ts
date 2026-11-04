@@ -28,7 +28,6 @@ export const evEnvironment = {
       "referenceLabel": "Film reference · GKIDS",
       "referenceUrl": "https://gkids.com/films/perfect-blue/"
     }
-  ],
-  "artCredit": "All furniture and prop models were created by Xueyao Jiang in 3ds Max. Unity scene arrangement, material integration, and the three hand-drawn film-poster reinterpretations were also made by Xueyao."
+  ]
 };
 

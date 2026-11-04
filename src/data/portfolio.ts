@@ -81,10 +81,10 @@ export const profile: Profile = {
     },
     {
       slug: 'dku-campus-tour',
-      role: 'Programming & game design',
+      role: 'Game design & NPC interactions',
       period: 'Oct 2026',
       description:
-        'Co-developed a 2D campus exploration game in Java, implementing interactive navigation and branching NPC dialogue with Swing, Java2D, and object-oriented design.',
+        'Co-developed a 2D campus guide in Java, focusing on NPC interactions, campus dialogue, visual details, music integration, and gameplay refinement.',
     },
   ],
 };
@@ -111,7 +111,8 @@ export const projects: Project[] = [
     medium: 'Houdini / Unreal Engine',
     year: '2026',
     cover: {
-      alt: 'Gaudí-Inspired Procedural House',
+      src: '/media/pcg-project/cover.png',
+      alt: 'A three-story procedural house with a turquoise undulating roof, pale patterned walls, and planted windows in Unreal Engine',
       color: '#d4dfcd',
     },
   },
@@ -130,12 +131,13 @@ export const projects: Project[] = [
   {
     id: 'dku-campus-tour',
     slug: 'dku-campus-tour',
-    title: 'DKU Campus Tour',
-    summary: 'A Java game turning campus exploration, interactive navigation, and branching NPC dialogue into a playable experience.',
+    title: 'DKU Campus Explorer',
+    summary: 'A campus tour through places, conversations, and everyday details of life at Duke Kunshan University.',
     medium: 'Java / Java2D',
     year: '2026',
     cover: {
-      alt: 'DKU Campus Tour',
+      src: '/media/dku-campus-tour/overview.webp',
+      alt: 'The campus square and landmark tower in DKU Campus Explorer',
       color: '#dce2df',
     },
   },

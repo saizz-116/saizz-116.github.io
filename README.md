@@ -44,10 +44,10 @@ The gallery keeps its irregular arrangement and shifts right by approximately 37
 
 Keep these rules when editing:
 
-- Keep exactly four primary projects: **Mixed Lives**, **Gaudí-Inspired Procedural House**, **Emotional Vacuum**, and **DKU Campus Tour**.
-- Mixed Lives uses the owner's supplied artwork. Emotional Vacuum uses the approved frame from the supplied demo. The remaining covers stay solid colors until real images are supplied. Do not generate substitute artwork or screenshots.
+- Keep exactly four primary projects: **Mixed Lives**, **Gaudí-Inspired Procedural House**, **Emotional Vacuum**, and **DKU Campus Explorer**.
+- Mixed Lives uses the owner's supplied artwork. Emotional Vacuum uses the approved frame from the supplied demo. DKU Campus Explorer uses a real frame from the owner's gameplay recording. The house cover stays a solid color until real images are supplied. Do not generate substitute artwork or screenshots.
 - Do not add illustrative-placeholder badges, tiny placeholder labels, gratuitous taglines, or filler descriptions.
-- Emotional Vacuum has an authored case study based on supplied project materials. Keep the remaining project pages empty apart from their heading and navigation until their materials are supplied.
+- Emotional Vacuum and DKU Campus Explorer have authored case studies based on supplied project materials. Keep the other project pages empty apart from their heading and navigation until their materials are supplied.
 - On project pages, the project title replaces the name at the upper-left masthead position, with CV at the right and the return-home button directly below the title. Do not leave an empty brand row above it.
 - Verify desktop layout visually after layout changes: assess spacing, alignment, type hierarchy, and overall balance as well as functional behavior.
 - Keep the web CV concise and curated. Exclude GPA, scholarships, and telephone numbers.
@@ -64,7 +64,7 @@ Keep these rules when editing:
 | `/work/mixed-lives` | Mixed Lives |
 | `/work/pcg-project` | Gaudí-Inspired Procedural House |
 | `/work/emotional-vacuum` | Emotional Vacuum: full English design and development case study |
-| `/work/dku-campus-tour` | DKU Campus Tour |
+| `/work/dku-campus-tour` | DKU Campus Explorer: campus guide game project |
 
 The house project's existing `pcg-project` slug is retained so its URL stays stable. Legacy `/about` and `/resume` links redirect to `/cv`; `/contact` also leads to the combined profile/CV page.
 
@@ -108,15 +108,28 @@ The original CV contains personal information intentionally omitted from the web
 
 The owner approved a complete English case study and the homepage cover taken at 01:13 of the supplied project film. Its independent visual treatment moves from a warm room palette to a night-sky palette, while preserving the saved homepage layout and the other project pages.
 
-- `src/components/EmotionalVacuumPage.tsx` contains the page, the six-stage player journey, YouTube chapter controls, image enlargement, and two-moment comparison.
+- `src/components/EmotionalVacuumPage.tsx` contains the page, the six-stage player journey, a click-to-load native video player and chapter controls, image enlargement, and two-moment comparison.
 - `src/components/emotional-vacuum.css` scopes its visual styles to the project page.
 - `src/data/emotionalVacuum.ts` holds the concept, design decisions, development stages, credits, and reflection.
 - `src/data/emotionalVacuumEnvironment.ts` holds the environment authorship and film-reference readings. Furniture and prop modeling in 3ds Max and the hand-drawn posters are credited to Xueyao, as confirmed by the owner. Scene arrangement and material integration are credited separately in Unity. The film connections are visual readings, with primary film references linked on the page; do not mislabel House/Hausu as Monster House or later distributor covers as original theatrical posters.
-- `public/media/emotional-vacuum/` holds optimized real photos, demo frames, and drawings. The full film streams from the owner's YouTube upload, `https://youtu.be/qHm_HIUTsws`. A local poster is shown first; the YouTube player loads only after a play or chapter click. A direct YouTube link remains available. Do not add the large local video files back to `public/`.
+- `public/media/emotional-vacuum/` holds optimized real photos, demo frames, drawings, and the approved `demo.mp4` web export. The primary player uses this self-hosted MP4 at `/media/emotional-vacuum/demo.mp4`. A local poster is shown first; the video loads only after a play or chapter click. The owner's YouTube upload, `https://youtu.be/qHm_HIUTsws`, remains available as a fallback link. Keep original footage and other large video exports outside `public/`.
 - `.qa/emotional-vacuum/media-manifest.json` records source files, timestamps, dimensions, and crops. Media validation and browser screenshots are retained beside it.
-- The environment section uses stills from the supplied Unity gameplay recording, with editor chrome cropped away. Firework launch/burst/trails are shown as a static image sequence, with a link to the release chapter of the YouTube film. `new-media-manifest.json` and `drawing-exports.json` record the frame selections and drawing exports. Original footage, drawings, and Unity scene placement are preserved. Former local MP4 exports are archived under the Git-ignored `.qa/emotional-vacuum/local-video-archive/`, outside the published assets. The final firework frames are actual recorded game effects.
+- The environment section uses stills from the supplied Unity gameplay recording, with editor chrome cropped away. Firework launch/burst/trails are shown as a static image sequence, with a link to the film's release chapter. `new-media-manifest.json` and `drawing-exports.json` record the frame selections and drawing exports. Original footage, drawings, and Unity scene placement are preserved. The Git-ignored `.qa/emotional-vacuum/local-video-archive/` preserves the local MP4 exports; only the approved `demo.mp4` web export is also copied into the published assets for playback. The final firework frames are actual recorded game effects.
 
 Present the completed work with its owner-confirmed development period, Sep–Oct 2026. Do not label the game a prototype or ongoing development. Workshop instruction and project guidance by Xiao Tan, Senior Adjunct Teaching Associate at NYU Shanghai, are credited alongside the workshop context near the beginning, using the supplied syllabus; the final credits list the four team members. The mixed-emotion phase adds load that slows captures and contracts capture range. Do not describe reduced walking speed or inventory-based fireworks. Design interpretation remains distinct from observed playtest results. The project was submitted to alt.ctrl.GDC 2027; submission does not mean selection. Audio sources have been checked: the three external fault/firework effects are CC0, and the owner confirmed the opening and emotion effects are the team's sound designer's work. Keep the team sound-design credit; no additional CC0 attribution is required. See `.qa/emotional-vacuum/audio-attribution-audit.json` for the source record.
+
+## DKU Campus Explorer
+
+`/work/dku-campus-tour` presents the complete two-person campus guide game, with the owner's interaction and creative design contributions highlighted through actual gameplay. The existing route slug is retained. The masthead and homepage display the game's title, **DKU Campus Explorer**.
+
+- `src/components/DKUCampusExplorerPage.tsx` and `dku-campus-explorer.css` provide the independent campus-atlas layout, guide overview, local video, interaction details, day/night comparison, iteration, and contribution credits.
+- `public/media/dku-campus-tour/` contains optimized stills, the edited `campus-demo.mp4`, its poster, and English WebVTT captions. The video plays directly from the static site; no video platform is required.
+- Media is derived from the owner's `Q:\DKUCampusTour\Demo Video.mp4`. The original recording, survey frames, edit recipe, and media provenance stay outside the public site, under `.qa/dku-campus-tour/` where applicable.
+- The project remains credited as a two-person collaboration. The other contributor's name is omitted from this public portfolio for privacy. Their map, movement, collision, and keyboard work is credited by role. Do not publish the original report or author-credits footage containing their identity.
+- Personal contributions follow the supplied report: NPC interactions, campus descriptions and dialogue, building and character details, music integration, and gameplay refinement. The report documents internal developer playthroughs; do not invent external user-study findings.
+- Campus information and images are credited to Duke Kunshan University. The soundtrack is credited to Kevin MacLeod (incompetech.com), with the original track and CC BY 4.0 links and an indication of audio editing.
+
+This iteration is prepared locally. The owner will handle GitHub deployment; do not commit or push as part of this task.
 
 ## Mixed Lives cover
 

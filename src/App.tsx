@@ -5,6 +5,7 @@ import HomeGallery from './editor/HomeGallery';
 import LayoutEditor from './editor/LayoutEditor';
 import { isLocalEditorHost } from './editor/layout';
 import EmotionalVacuumPage from './components/EmotionalVacuumPage';
+import DKUCampusExplorerPage from './components/DKUCampusExplorerPage';
 
 function Arrow({ back = false }: { back?: boolean }) {
   return (
@@ -152,6 +153,7 @@ function ProjectPage() {
   const project = getProject(slug);
   if (!project) return <NotFound />;
   if (project.slug === 'emotional-vacuum') return <><PageMeta title={project.title} description="An alternative-controller game exploring emotional suppression through collection, containment, and release. A collaborative design and development case study by Xueyao Jiang." /><EmotionalVacuumPage /></>;
+  if (project.slug === 'dku-campus-tour') return <><PageMeta title={project.title} description="A two-person campus exploration game connecting places, conversations, and everyday life at Duke Kunshan University. Design and interaction work by Xueyao Jiang." /><DKUCampusExplorerPage /></>;
   return (
     <>
       <PageMeta title={project.title} description={project.summary} />
@@ -188,7 +190,7 @@ export default function App() {
   const pathname = routePathname.replace(/\/+$/, '') || '/';
   if (pathname === '/edit') return <LayoutEditor />;
   return (
-    <div className={`site-shell${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}`}>
+    <div className={`site-shell${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}`}>
       <a className="skip-link" href="#main">Skip to content</a>
       <RouteEffects /><Header />
       <Routes>

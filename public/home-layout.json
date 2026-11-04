@@ -29,21 +29,21 @@
     },
     "pcg-project.cover": {
       "x": 554.58,
-      "y": 0,
-      "width": 443.75,
-      "height": 278
+      "y": 38.19,
+      "width": 382.79,
+      "height": 239.81
     },
     "pcg-project.title": {
-      "x": 1021.33,
-      "y": 52,
+      "x": 951.06,
+      "y": 60.4,
       "width": 178,
       "height": 58,
       "fontSize": 23.76,
       "lineHeight": 1.17
     },
     "pcg-project.description": {
-      "x": 1021.33,
-      "y": 122,
+      "x": 956.41,
+      "y": 122.76,
       "width": 178,
       "height": 110,
       "fontSize": 13,
@@ -89,7 +89,7 @@
       "x": 554.58,
       "y": 553,
       "width": 330,
-      "height": 66,
+      "height": 44,
       "fontSize": 13,
       "lineHeight": 1.65
     }
