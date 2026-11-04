@@ -158,6 +158,8 @@ The blue and pale brown watercolor textures repeat as 320px tiles; CSS reuses ea
 
 The Mixed Lives detail page uses `MixedLivesPage.tsx` and scoped `mixed-lives.css`: a dark background, title and factual gameplay introduction, the first supplied cover only, and a large native gameplay video. Design rationale and a longer case study are intentionally reserved for the owner's forthcoming writing. `scripts/prepare-mixed-lives-cover.py` exports the complete first PNG without cropping or repainting to sRGB `cover-one.webp` and `cover-one-800.webp`. The page plays `/media/mixed-lives/demo.mp4` with `/media/mixed-lives/demo-poster.webp`; retain the original recording under ignored `material/`.
 
+The video's collapsible Audio credits lists the music and twelve sound-effect sources from the Unity project's `CREDITS.txt`, with creator, source, CC0 links, and an editing note covering the demo's continuous music mix; the structured credits live in `src/data/mixedLivesAudio.ts`.
+
 The browser loads optimized exports from `public/media/mixed-lives/`:
 
 | File | Purpose |

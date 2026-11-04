@@ -2,10 +2,26 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Project } from '../types';
 import { projects } from '../data/portfolio';
+import { mixedLivesAudioLicense, mixedLivesMusic, mixedLivesSoundEffects } from '../data/mixedLivesAudio';
+import type { MixedLivesAudioCredit } from '../data/mixedLivesAudio';
 import VideoPlayButton from './VideoPlayButton';
 import './mixed-lives.css';
 
 const media = '/media/mixed-lives/';
+
+function AudioCredit({ credit }: { credit: MixedLivesAudioCredit }) {
+  return (
+    <li className="ml-audio-credit">
+      <h4>{credit.title}</h4>
+      <p className="ml-audio-author">By {credit.author}</p>
+      <p className="ml-audio-use">{credit.use}</p>
+      <div className="ml-audio-links">
+        <a href={credit.source} target="_blank" rel="noopener noreferrer" aria-label={`${credit.title} — source`}>Source ↗</a>
+        <a href={mixedLivesAudioLicense} target="_blank" rel="noopener noreferrer" aria-label={`${credit.title} — CC0 1.0 Universal license`}>CC0 1.0 ↗</a>
+      </div>
+    </li>
+  );
+}
 
 export default function MixedLivesPage({ project }: { project: Project }) {
   const film = useRef<HTMLVideoElement>(null);
@@ -59,15 +75,30 @@ export default function MixedLivesPage({ project }: { project: Project }) {
             controls
             playsInline
             preload="metadata"
-            width="1920"
-            height="1080"
+            width="1600"
+            height="900"
             poster={`${media}demo-poster.webp`}
             aria-label="Mixed Lives gameplay demo showing guest dialogue, cocktail mixing, and flavour feedback"
             onLoadedMetadata={event => setDuration(Number.isFinite(event.currentTarget.duration) ? event.currentTarget.duration : null)}
           >
             <source src={`${media}demo.mp4`} type="video/mp4" />
+            <track kind="subtitles" src={`${media}demo-guide.vtt`} srcLang="en" label="Feature guide (English)" />
             Your browser does not support this video. <a href={`${media}demo.mp4`}>Open the gameplay demo</a>.
           </video>
+          <details className="ml-audio-credits">
+            <summary>Audio credits<span>Music & sound sources</span></summary>
+            <div className="ml-audio-content">
+              <p className="ml-audio-note">Music and sound effects are from the external creators credited below, released under CC0 1.0 Universal. Selected sound excerpts were trimmed, faded, and level-adjusted for the game. The demo mixes the background music separately as a continuous track, with fades and level adjustments alongside the gameplay sound effects.</p>
+              <section aria-labelledby="ml-music-heading">
+                <h3 id="ml-music-heading">Music</h3>
+                <ul className="ml-audio-list ml-audio-list--music"><AudioCredit credit={mixedLivesMusic} /></ul>
+              </section>
+              <section aria-labelledby="ml-sounds-heading">
+                <h3 id="ml-sounds-heading">Sound effects</h3>
+                <ul className="ml-audio-list">{mixedLivesSoundEffects.map(credit => <AudioCredit credit={credit} key={credit.source} />)}</ul>
+              </section>
+            </div>
+          </details>
         </section>
 
         <nav className="project-navigation ml-navigation" aria-label="Other projects">
