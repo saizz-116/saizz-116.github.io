@@ -5,9 +5,6 @@
 .dku-container { width: min(1280px, calc(100% - 112px)); margin-inline: auto; }
 .dku-masthead { display: flex; align-items: flex-start; justify-content: space-between; padding-block: 28px 24px; border-bottom: 1px solid var(--dku-rule); }
 .dku-masthead h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 29px; line-height: 1.1; letter-spacing: -.04em; }
-.dku-masthead-right { display: flex; align-items: center; gap: 34px; padding-top: 2px; }
-.dku-masthead-right > span { font-size: 10px; color: var(--dku-muted); }
-.dku-cv { border: 1px solid #9aa6a6; min-width: 80px; padding: 10px 14px; font-size: 12px; }
 .dku-page a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .dku-kicker { color: var(--dku-muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; line-height: 1.6; }
 .dku-page h2 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(35px, 3.6vw, 50px); font-weight: 400; line-height: 1.08; letter-spacing: -.045em; }

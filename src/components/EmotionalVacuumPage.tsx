@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { evContent } from '../data/emotionalVacuum';
 import { evEnvironment } from '../data/emotionalVacuumEnvironment';
 import VideoPlayButton from './VideoPlayButton';
+import { emotionalVacuumChapters } from '../data/projectChapters';
 import './emotional-vacuum.css';
 
 const mediaRoot = '/media/emotional-vacuum/';
@@ -89,7 +90,6 @@ export default function EmotionalVacuumPage() {
         <div>
           <Link className="ev-project-name" to="/work/emotional-vacuum">Emotional Vacuum</Link>
         </div>
-        <div className="ev-masthead-right"><span>Game design & development / 2026</span><Link to="/cv">CV ↗</Link></div>
       </header>
 
       <section className="ev-hero ev-container" aria-labelledby="ev-title">
@@ -114,8 +114,8 @@ export default function EmotionalVacuumPage() {
         <p>{evContent.workshopContext}</p>
       </section>
 
-      <nav className="ev-chapter-nav" aria-label="Project chapters">
-        <div className="ev-container"><a href="#concept">01 Concept</a><a href="#journey">02 Experience</a><a href="#environment">03 Environment</a><a href="#embodiment">04 Physical form</a><a href="#decisions">05 Design decisions</a><a href="#development">06 Collaboration</a><a href="#reflection">07 Reflection</a></div>
+      <nav className="ev-chapter-nav" id="project-chapters" aria-label="Project chapters">
+        <div className="ev-container">{emotionalVacuumChapters.map(chapter => <a key={chapter.id} href={`#${chapter.id}`}>{chapter.label}</a>)}</div>
       </nav>
 
       <section className="ev-introduction ev-container ev-section" id="concept" aria-labelledby="ev-concept-heading">

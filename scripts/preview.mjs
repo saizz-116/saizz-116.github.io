@@ -40,7 +40,7 @@ async function hasLayoutEditor() {
     });
     if (!response.ok) return false;
     const status = await response.json();
-    return status.enabled === true && status.version === 1;
+    return status.enabled === true && status.version === 2;
   } catch { return false; }
 }
 

@@ -1,50 +1,35 @@
-import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/portfolio';
 import { LayoutScene } from './LayoutScene';
-import { emptyLayout, loadLayout } from './layout';
-import type { LayoutDocument } from './layout';
-
-// Reuse the saved composition immediately when returning from another page.
-// The background read still picks up changes saved in the local layout editor.
-let lastHomeLayout = emptyLayout;
-
-const desktopQuery = '(min-width: 1101px)';
-function subscribeToDesktop(onChange: () => void) {
-  const query = window.matchMedia(desktopQuery);
-  query.addEventListener('change', onChange);
-  return () => query.removeEventListener('change', onChange);
-}
-const isDesktop = () => window.matchMedia(desktopQuery).matches;
+import { useDesktopLayout } from './useDesktopLayout';
+import { useNavigationGeometry } from '../components/useNavigationGeometry';
+import { desktopRenderLayout } from '../components/navigationGeometry';
 
 export default function HomeGallery() {
-  const desktop = useSyncExternalStore(subscribeToDesktop, isDesktop);
-  const [layout, setLayout] = useState<LayoutDocument>(() => lastHomeLayout);
-  const [scale, setScale] = useState(1);
+  const desktop = useDesktopLayout();
+  const { layout, viewport } = useNavigationGeometry();
+  const [frame, setFrame] = useState({ x: 0, y: 0, scale: 1 });
   const stage = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const controller = new AbortController();
-    loadLayout(controller.signal).then(saved => {
-      lastHomeLayout = saved;
-      setLayout(saved);
-    }).catch(() => { /* Keep the last known layout if the file is unavailable. */ });
-    return () => controller.abort();
-  }, []);
   useLayoutEffect(() => {
     const node = stage.current;
     if (!node) return;
-    const measure = () => setScale(node.clientWidth / layout.canvas.width);
+    const measure = () => {
+      const rect = node.getBoundingClientRect();
+      const next = { x: rect.left, y: rect.top, scale: node.clientWidth / layout.canvas.width };
+      setFrame(previous => previous.x === next.x && previous.y === next.y && previous.scale === next.scale ? previous : next);
+    };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(node);
     return () => observer.disconnect();
-  }, [layout, desktop]);
-  const custom = desktop && Object.keys(layout.items).length > 0;
+  }, [layout, desktop, viewport.width, viewport.height]);
   const aspect = layout.canvas.width / layout.canvas.height;
+  const displayLayout = desktop ? desktopRenderLayout(layout, viewport.width, viewport.height, viewport.viewportWidth, frame) : layout;
   return (
-    <section ref={stage} className={`exhibition${custom ? ' exhibition--custom' : ''}`} aria-label="Selected projects"
-      style={custom ? { width: `min(1300px, calc((100svh - 210px) * ${aspect}), 100%)`, height: 'auto', minHeight: 0, aspectRatio: String(aspect) } : undefined}>
-      {custom ? <div className="home-layout-scaled" style={{ transform: `scale(${scale})` }}><LayoutScene layout={layout} /></div>
+    <section ref={stage} className={desktop ? 'home-full-layout' : 'exhibition'} aria-label={desktop ? 'Portfolio homepage' : 'Selected projects'}
+      style={desktop ? { width: `min(100%, calc(100svh * ${aspect}))`, aspectRatio: String(aspect) } : undefined}>
+      {desktop ? <div className="home-layout-scaled" style={{ transform: `scale(${frame.scale})` }}><LayoutScene layout={displayLayout} chromeScale={1 / frame.scale} /></div>
         : projects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}
     </section>
   );

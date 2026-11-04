@@ -38,6 +38,9 @@ export interface Project {
   year?: string;
   cover: {
     src?: string;
+    srcSet?: string;
+    width?: number;
+    height?: number;
     alt: string;
     color: string;
   };

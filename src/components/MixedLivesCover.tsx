@@ -1,8 +1,7 @@
 import { useState } from 'react';
+import { coverImages, coverImageSizes } from '../data/cover-images';
 
-const mediaRoot = '/media/mixed-lives';
-
-export default function MixedLivesCover() {
+export default function MixedLivesCover({ loading = 'eager' }: { loading?: 'eager' | 'lazy' }) {
   const [bottomFailed, setBottomFailed] = useState(false);
   const [topFailed, setTopFailed] = useState(false);
   const [titleFailed, setTitleFailed] = useState(false);
@@ -12,11 +11,10 @@ export default function MixedLivesCover() {
       <div className="mixed-cover__top">
         {!topFailed && (
           <img
-            src={`${mediaRoot}/cover-top.webp`}
+            {...coverImages.mixedTop}
+            sizes={coverImageSizes}
             alt=""
-            width={1200}
-            height={675}
-            loading="eager"
+            loading={loading}
             decoding="async"
             draggable={false}
             onError={() => setTopFailed(true)}
@@ -26,11 +24,10 @@ export default function MixedLivesCover() {
       <div className="mixed-cover__bottom">
         {!bottomFailed && (
           <img
-            src={`${mediaRoot}/cover-bottom-fallback.webp`}
+            {...coverImages.mixedBottom}
+            sizes={coverImageSizes}
             alt=""
-            width={1200}
-            height={675}
-            loading="eager"
+            loading={loading}
             decoding="async"
             draggable={false}
             onError={() => setBottomFailed(true)}
@@ -40,9 +37,10 @@ export default function MixedLivesCover() {
       {!titleFailed && (
         <img
           className="mixed-cover__title"
-          src={`${mediaRoot}/title-handwritten.png`}
+          {...coverImages.mixedTitle}
+          sizes="(max-width: 650px) 24vw, 120px"
           alt=""
-          loading="eager"
+          loading={loading}
           decoding="async"
           draggable={false}
           onError={() => setTitleFailed(true)}

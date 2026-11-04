@@ -1,4 +1,5 @@
 import type { Profile, Project } from '../types';
+import { coverImages } from './cover-images';
 
 /**
  * Personal website content, curated from Xueyao's supplied CV.
@@ -98,7 +99,7 @@ export const projects: Project[] = [
     medium: 'Alternative controller / Unity',
     year: '2026',
     cover: {
-      src: '/media/emotional-vacuum/cover.webp',
+      ...coverImages.emotionalVacuum,
       alt: 'A player wearing the transparent emotional-creature backpack and aiming a physical vacuum at the game screen',
       color: '#d8d6e5',
     },
@@ -111,7 +112,7 @@ export const projects: Project[] = [
     medium: 'Houdini / Unreal Engine',
     year: '2026',
     cover: {
-      src: '/media/pcg-project/cover.png',
+      ...coverImages.proceduralHouse,
       alt: 'A three-story procedural house with a turquoise undulating roof, pale patterned walls, and planted windows in Unreal Engine',
       color: '#d4dfcd',
     },
@@ -136,7 +137,7 @@ export const projects: Project[] = [
     medium: 'Java / Java2D',
     year: '2026',
     cover: {
-      src: '/media/dku-campus-tour/overview.webp',
+      ...coverImages.campusExplorer,
       alt: 'The campus square and landmark tower in DKU Campus Explorer',
       color: '#dce2df',
     },

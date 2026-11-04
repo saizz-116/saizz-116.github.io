@@ -16,7 +16,7 @@
 .editor-shell select { font: inherit; border: 1px solid #c6c9bf; border-radius: 4px; color: #30372a; background: #fff; padding: 7px 9px; }
 .editor-viewport { min-height: 0; min-width: 0; flex: 1; overflow: auto; display: grid; place-items: center; padding: 32px; overscroll-behavior: contain; }
 .editor-viewport { align-items: safe center; justify-items: safe center; }
-.editor-artboard-frame { position: relative; flex-shrink: 0; background: #f2f1ec; box-shadow: 0 2px 20px #26341b15; outline: 1px solid #d5d6ce; }
+.editor-artboard-frame { position: relative; flex-shrink: 0; overflow: clip; overflow-clip-margin: 12px; background: #f2f1ec; box-shadow: 0 2px 20px #26341b15; outline: 1px solid #d5d6ce; }
 .editor-artboard { position: absolute; left: 0; top: 0; transform-origin: top left; background: #f2f1ec; }
 .editor-artboard [data-layout-id] { cursor: grab; touch-action: none; user-select: none; }
 .editor-artboard [data-layout-id]:active { cursor: grabbing; }

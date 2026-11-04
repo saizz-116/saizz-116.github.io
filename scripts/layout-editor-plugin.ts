@@ -118,7 +118,7 @@ export function layoutEditorPlugin(): Plugin {
     }
 
     if (pathname === `${apiRoot}status` && req.method === 'GET') {
-      send(res, 200, { enabled: true, token, version: 1 });
+      send(res, 200, { enabled: true, token, version: 2 });
       return;
     }
     if (pathname !== `${apiRoot}layout`) { send(res, 404, { error: 'Not found.' }); return; }

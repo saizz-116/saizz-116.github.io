@@ -5,14 +5,14 @@ import { projects } from '../data/portfolio';
 import { LayoutScene } from './LayoutScene';
 import {
   cloneLayout, completeLayout, emptyLayout, isLocalEditorHost,
-  itemKinds, loadLayout, parseLayoutDocument,
+  isFrameItem, itemKinds, pageItemKinds, loadLayout, parseLayoutDocument,
 } from './layout';
-import type { LayoutBox, LayoutDocument, LayoutItemId, LayoutItemKind, ProjectSlug } from './layout';
+import type { LayoutBox, LayoutDocument, LayoutGroup, LayoutItemId, LayoutItemKind, ProjectItemKind } from './layout';
 import { resizeBox, resizeHandles, resizeHandleNames } from './resize';
 import type { ResizeHandle } from './resize';
 import './editor.css';
 
-const kindNames: Record<LayoutItemKind, string> = { cover: '封面', title: '标题', description: '说明' };
+const kindNames: Record<LayoutItemKind, string> = { cover: '封面', title: '标题', description: '说明', name: '姓名', subtitle: '副标题', cv: 'CV 入口', contact: '邮箱' };
 const round = (value: number) => Math.round(value * 100) / 100;
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), Math.max(min, max));
 const same = (left: LayoutDocument, right: LayoutDocument) => JSON.stringify(left) === JSON.stringify(right);
@@ -97,7 +97,9 @@ export default function LayoutEditor() {
   const rangeStart = useRef<LayoutDocument | null>(null);
   const scene = completeLayout(document);
   const selected = scene.items[selectedId]!;
-  const [selectedSlug, selectedKind] = selectedId.split('.') as [ProjectSlug, LayoutItemKind];
+  const [selectedSlug, selectedKind] = selectedId.split('.') as [LayoutGroup, LayoutItemKind];
+  const frameSelected = isFrameItem(selectedId);
+  const availableKinds = selectedSlug === 'page' ? pageItemKinds : itemKinds;
   const scale = zoom === 'fit' ? fitScale : zoom;
   const dirty = !same(document, saved);
   const local = isLocalEditorHost();
@@ -134,7 +136,7 @@ export default function LayoutEditor() {
       fetch('/__portfolio-editor/status', { cache: 'no-store', signal: controller.signal }).then(async response => {
         if (!response.ok) throw new Error('编辑服务尚未启动，请重新运行 Start Portfolio.cmd。');
         const status: unknown = await response.json();
-        if (!status || typeof status !== 'object' || !('enabled' in status) || status.enabled !== true || !('token' in status) || typeof status.token !== 'string') {
+        if (!status || typeof status !== 'object' || !('enabled' in status) || status.enabled !== true || !('token' in status) || typeof status.token !== 'string' || !('version' in status) || status.version !== 2) {
           throw new Error('编辑服务尚未启动，请重新运行 Start Portfolio.cmd。');
         }
         return status.token;
@@ -189,8 +191,20 @@ export default function LayoutEditor() {
     let next: LayoutDocument | undefined;
     for (const element of artboard.querySelectorAll<HTMLElement>('[data-layout-id]')) {
       const id = element.dataset.layoutId as LayoutItemId;
-      const text = element.querySelector<HTMLElement>('h2, p');
+      const text = element.querySelector<HTMLElement>('[data-layout-content]');
       const box = scene.items[id];
+      if (id === 'page.cv' && box) {
+        const navigation = element.querySelector<HTMLElement>('.layout-page-navigation');
+        const label = navigation?.querySelector<HTMLElement>('span');
+        const icon = navigation?.querySelector<SVGElement>('svg');
+        if (navigation && label && icon) {
+          const labelRect = label.getBoundingClientRect();
+          const iconRect = icon.getBoundingClientRect();
+          if (Math.max(labelRect.height, iconRect.height) / scale > box.height - 20
+            || (labelRect.width + iconRect.width) / scale > box.width - 38) overflow = true;
+        }
+        continue;
+      }
       if (!text || !box) continue;
       const height = Math.ceil(text.getBoundingClientRect().height / scale + 1);
       if (box.y + height > scene.canvas.height + 1) overflow = true;
@@ -201,10 +215,12 @@ export default function LayoutEditor() {
       }
     }
     setTextOverflow(overflow);
-    // Empty items represent the original responsive CSS, so opening the editor
-    // does not create a draft until the owner actually changes something.
-    if (next && Object.keys(documentRef.current.items).length > 0) setDocument(next);
-  }, [document, loading, token, scale, scene, setDocument]);
+    if (next && Object.keys(documentRef.current.items).length > 0) {
+      const pristine = same(documentRef.current, saved);
+      setDocument(next);
+      if (pristine) setSaved(cloneLayout(next));
+    }
+  }, [document, saved, loading, token, scale, scene, setDocument]);
 
   const undo = useCallback(() => {
     if (saving || dragRef.current || !past.length) return;
@@ -357,7 +373,7 @@ export default function LayoutEditor() {
   return (
     <main className="editor-shell">
       <header className="editor-toolbar">
-        <h1>编辑排版</h1>
+        <h1>完整首页排版</h1>
         <div className="editor-history">
           <button type="button" onClick={undo} disabled={!past.length || saving} title="Ctrl+Z">撤销</button>
           <button type="button" onClick={redo} disabled={!future.length || saving} title="Ctrl+Shift+Z">重做</button>
@@ -370,7 +386,7 @@ export default function LayoutEditor() {
       <div className="editor-workspace">
         <section className="editor-canvas-column" aria-label="排版画布">
           <div className="editor-canvas-tools">
-            <p>{selectedKind === 'cover' ? '拖动元素移动，拖动四角或四边缩放' : '拖动文字移动，拖动左右边调整宽度'}</p>
+            <p>{frameSelected ? '拖动元素移动，拖动四角或四边缩放' : '拖动文字移动，拖动左右边调整宽度'}</p>
             <label>缩放
               <select aria-label="画布缩放" value={zoom === 'fit' ? 'fit' : String(zoom)} onChange={event => setZoom(event.target.value === 'fit' ? 'fit' : Number(event.target.value))}>
                 <option value="fit">适应屏幕</option><option value="0.5">50%</option><option value="0.75">75%</option><option value="1">100%</option><option value="1.25">125%</option>
@@ -382,7 +398,7 @@ export default function LayoutEditor() {
               <div className="editor-artboard" ref={artboardRef} style={{ width: scene.canvas.width, height: scene.canvas.height, transform: `scale(${scale})` }}>
                 <LayoutScene layout={scene} editing selectedId={selectedId} onItemPointerDown={beginPointer} onItemKeyDown={keyMove} />
                 <div className="editor-selection" style={{ ...selectionStyle, '--handle-scale': 1 / scale } as CSSProperties}>
-                  {(selectedKind === 'cover' ? resizeHandles : ['w', 'e'] as ResizeHandle[]).map(handle => (
+                  {(frameSelected ? resizeHandles : ['w', 'e'] as ResizeHandle[]).map(handle => (
                     <button key={handle} type="button" className={`editor-resize-handle editor-resize-handle--${handle}`}
                       tabIndex={-1} aria-label={`从${resizeHandleNames[handle]}调整大小`} title={`拖动${resizeHandleNames[handle]}`}
                       disabled={saving} onPointerDown={event => beginPointer(selectedId, event, 'resize', handle)} />
@@ -391,17 +407,23 @@ export default function LayoutEditor() {
               </div>
             </div>
           </div>
-          <div className="editor-canvas-footer"><span>方向键微调 · Shift + 方向键移动 10 像素</span><span>{Math.round(scale * 100)}%</span></div>
+          <div className="editor-canvas-footer"><span>方向键微调 · Shift + 方向键移动 10 像素</span><span>{scene.canvas.width} × {scene.canvas.height} · {Math.round(scale * 100)}%</span></div>
         </section>
         <aside className="editor-inspector" aria-label="元素设置">
           <fieldset disabled={saving}>
-            <label className="editor-project-picker">项目
-              <select aria-label="选择项目" value={selectedSlug} onChange={event => setSelectedId(`${event.target.value as ProjectSlug}.${selectedKind}`)}>
+            <label className="editor-project-picker">区域
+              <select aria-label="选择区域" value={selectedSlug} onChange={event => {
+                const group = event.target.value as LayoutGroup;
+                const kind = group === 'page' ? pageItemKinds.includes(selectedKind as typeof pageItemKinds[number]) ? selectedKind : 'name'
+                  : itemKinds.includes(selectedKind as ProjectItemKind) ? selectedKind : 'cover';
+                setSelectedId(`${group}.${kind}` as LayoutItemId);
+              }}>
+                <option value="page">首页元素</option>
                 {projects.map(project => <option key={project.slug} value={project.slug}>{project.title}</option>)}
               </select>
             </label>
             <div className="editor-kind-picker" role="group" aria-label="元素类型">
-              {itemKinds.map(kind => <button type="button" key={kind} aria-pressed={selectedKind === kind} onClick={() => setSelectedId(`${selectedSlug}.${kind}`)}>{kindNames[kind]}</button>)}
+              {availableKinds.map(kind => <button type="button" key={kind} aria-pressed={selectedKind === kind} onClick={() => setSelectedId(`${selectedSlug}.${kind}` as LayoutItemId)}>{kindNames[kind]}</button>)}
             </div>
             <h2>位置</h2>
             <div className="editor-field-grid">
@@ -411,7 +433,7 @@ export default function LayoutEditor() {
             <h2>大小</h2>
             <div className="editor-field-grid">
               <NumberField label="宽度" value={selected.width} min={24} max={scene.canvas.width - selected.x} onCommit={value => changeDimension('width', value)} />
-              <NumberField label="高度" value={selected.height} min={16} max={scene.canvas.height - selected.y} disabled={selectedKind !== 'cover'} onCommit={value => changeDimension('height', value)} />
+              <NumberField label="高度" value={selected.height} min={16} max={scene.canvas.height - selected.y} disabled={!frameSelected} onCommit={value => changeDimension('height', value)} />
             </div>
             {selectedKind === 'cover' ? <label className="editor-check"><input type="checkbox" checked={lockAspect} onChange={event => setLockAspect(event.target.checked)} />保持比例</label> : <>
               <h2>文字</h2>
@@ -427,12 +449,12 @@ export default function LayoutEditor() {
                   changeBox(selectedId, { fontSize: Number(event.target.value) }, false);
                 }}
                 onPointerUp={finishRange} onBlur={finishRange} />
-              <p className="editor-field-note">文字高度随内容变化</p>
+              <p className="editor-field-note">{selectedKind === 'cv' ? '可调整按钮宽高和文字大小' : '文字高度随内容变化'}</p>
             </>}
           </fieldset>
           {error && <p className="editor-overflow" role="alert">{error}</p>}
-          {textOverflow && <p className="editor-overflow" role="alert">文字超出画布，请加宽文本框或减小字号。</p>}
-          <p className="editor-persistence-note">保存后直接更新网站排版。</p>
+          {textOverflow && <p className="editor-overflow" role="alert">文字超出画布或按钮，请增大元素或减小字号。</p>}
+          <p className="editor-persistence-note">保存后更新本地完整首页，线上网站需重新部署。手机版保持自动排版。</p>
         </aside>
       </div>
     </main>

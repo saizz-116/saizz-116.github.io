@@ -48,7 +48,6 @@ export default function DKUCampusExplorerPage() {
     <main className="dku-page" id="main" tabIndex={-1}>
       <header className="dku-masthead dku-container">
         <div><h1><Link to="/work/dku-campus-tour">DKU Campus Explorer</Link></h1></div>
-        <div className="dku-masthead-right"><span>Game design & development / 2026</span><Link className="dku-cv" to="/cv">CV ↗</Link></div>
       </header>
 
       <section className="dku-hero dku-container" aria-labelledby="dku-introduction">

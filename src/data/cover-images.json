@@ -1,0 +1,38 @@
+{
+  "emotionalVacuum": {
+    "src": "/media/optimized/emotionalVacuum-800-c92572dd5f.webp",
+    "srcSet": "/media/optimized/emotionalVacuum-480-2c70b010d3.webp 480w, /media/optimized/emotionalVacuum-800-c92572dd5f.webp 800w, /media/optimized/emotionalVacuum-1200-27d0510877.webp 1200w",
+    "width": 1200,
+    "height": 878
+  },
+  "proceduralHouse": {
+    "src": "/media/optimized/proceduralHouse-800-0aaf43ab10.webp",
+    "srcSet": "/media/optimized/proceduralHouse-480-426fb94f78.webp 480w, /media/optimized/proceduralHouse-800-0aaf43ab10.webp 800w, /media/optimized/proceduralHouse-1200-6dbca6cdd9.webp 1200w",
+    "width": 1798,
+    "height": 1002
+  },
+  "mixedTop": {
+    "src": "/media/optimized/mixedTop-800-07d607bc34.webp",
+    "srcSet": "/media/optimized/mixedTop-480-b8ed00eafc.webp 480w, /media/optimized/mixedTop-800-07d607bc34.webp 800w, /media/optimized/mixedTop-1200-5b4398f4ed.webp 1200w",
+    "width": 1200,
+    "height": 675
+  },
+  "mixedBottom": {
+    "src": "/media/optimized/mixedBottom-800-24a93e4f4c.webp",
+    "srcSet": "/media/optimized/mixedBottom-480-a118a59b4e.webp 480w, /media/optimized/mixedBottom-800-24a93e4f4c.webp 800w, /media/optimized/mixedBottom-1200-729ff07277.webp 1200w",
+    "width": 1200,
+    "height": 675
+  },
+  "campusExplorer": {
+    "src": "/media/optimized/campusExplorer-800-ed5272d700.webp",
+    "srcSet": "/media/optimized/campusExplorer-480-a9c8b897c0.webp 480w, /media/optimized/campusExplorer-800-ed5272d700.webp 800w, /media/optimized/campusExplorer-1200-bb971b9a97.webp 1200w",
+    "width": 1600,
+    "height": 983
+  },
+  "mixedTitle": {
+    "src": "/media/optimized/mixedTitle-320-5dd84fcaf7.webp",
+    "srcSet": "/media/optimized/mixedTitle-160-b15061b54d.webp 160w, /media/optimized/mixedTitle-320-5dd84fcaf7.webp 320w, /media/optimized/mixedTitle-640-a29ac60928.webp 640w",
+    "width": 1048,
+    "height": 654
+  }
+}

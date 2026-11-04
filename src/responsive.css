@@ -1,27 +1,13 @@
 /* Keep the saved exhibition composition on desktop; reflow for smaller screens. */
 @media (max-width: 1100px) {
-  html { scroll-padding-top: 88px; }
+  :root { --content-gutter: 32px; --gutter: 32px; }
+  .site-shell--cv .site-header { padding-inline: var(--content-gutter); }
+  html { scroll-padding-top: var(--project-scroll-offset, 0px); }
   .header-editor-link { display: none; }
-  .site-shell.site-shell--project {
-    padding: calc(74px + env(safe-area-inset-top, 0px)) 0 0;
-    --project-nav-paper: var(--paper);
-  }
-  .site-shell--project.site-shell--ev { --project-nav-paper: #eee7db; }
-  .site-shell--project.site-shell--dku { --project-nav-paper: #f3f0e7; }
-  .project-side-nav {
-    inset: 0 0 auto;
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: calc(12px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 12px max(20px, env(safe-area-inset-left, 0px));
-    border-bottom: 1px solid var(--rule);
-    background: var(--project-nav-paper);
-  }
-  .project-back-link { width: 136px; min-height: 44px; padding: 11px 14px; font-size: 13px; }
-  .project-mobile-cv { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; padding: 10px 13px; border: 1px solid #8f9187; font-size: 13px; }
-  .ev-masthead-right, .dku-masthead-right, .project-heading > nav { display: none; }
-  .site-shell--project > .project-page { width: calc(100% - 64px); }
+  .project-header-heading, .project-header-chapters { display: none; }
+  .project-header-chapter-select { display: block; width: 100%; min-width: 0; min-height: 44px; padding: 8px 4px; border: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; font-size: 12px; }
+  .ev-masthead, .dku-masthead { display: block; }
+  .site-shell--project > .project-page { width: var(--content-width); }
   .exhibit-link:active .exhibit-image { transform: scale(.99); }
 }
 
@@ -35,7 +21,7 @@
 @media (max-width: 760px) {
   html { scrollbar-gutter: auto; -webkit-text-size-adjust: 100%; }
   .project-heading h1 { font-size: clamp(32px, 7vw, 46px); }
-  .site-shell--project > .project-page { width: calc(100% - 40px); padding-top: 23px; }
+  .site-shell--project > .project-page { width: var(--content-width); padding-top: 23px; }
   .ev-page, .dku-page { overflow-wrap: break-word; }
   .ev-hero h1 { font-size: clamp(44px, 10.8vw, 64px); }
   .ev-hero-description, .dku-hero-copy > p:not(.dku-kicker) { font-size: 15px; line-height: 1.75; }
@@ -65,7 +51,7 @@
 }
 
 @media (max-width: 650px) {
-  :root { --gutter: max(20px, env(safe-area-inset-left, 0px)); }
+  :root { --gutter: max(20px, env(safe-area-inset-left, 0px)); --content-gutter: 20px; }
   .site-header { gap: 12px; padding-top: max(24px, env(safe-area-inset-top, 0px)); }
   .site-header > nav { gap: 0; }
   .identity-name { font-size: clamp(25px, 7.8vw, 32px); }
@@ -102,6 +88,9 @@
 }
 
 @media (max-width: 380px) {
+  .project-header-chapter-select { appearance: none; padding: 0; color: transparent; }
+  .project-header-chapter-select option { color: var(--project-header-ink); }
+  .project-header-menu-icon { display: block; position: absolute; width: 20px; height: 20px; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; }
   .skills-list > div { grid-template-columns: 1fr; gap: 3px; }
   .ev-facts, .dku-facts { grid-template-columns: 1fr; }
   .ev-facts > div:last-child, .dku-facts > div:last-child { grid-column: auto; }
@@ -109,6 +98,6 @@
 }
 
 @media print {
-  .project-side-nav { display: none; }
+  .project-header, .project-header-space { display: none; }
   .site-shell.site-shell--project { padding: 0; }
 }

@@ -1,97 +1,129 @@
 {
-  "version": 1,
+  "version": 2,
   "canvas": {
-    "width": 1200,
-    "height": 700
+    "width": 1440,
+    "height": 900
   },
   "items": {
     "emotional-vacuum.cover": {
-      "x": 271.94,
-      "y": 78.53,
-      "width": 272.64,
-      "height": 199.47
+      "x": 438.06,
+      "y": 201.41,
+      "width": 268.75,
+      "height": 196.62
     },
     "emotional-vacuum.title": {
-      "x": 125.91,
-      "y": 41.52,
-      "width": 116.13,
-      "height": 58,
-      "fontSize": 23.76,
+      "x": 294.11,
+      "y": 164.93,
+      "width": 114.47,
+      "height": 57.17,
+      "fontSize": 23.42,
       "lineHeight": 1.17
     },
     "emotional-vacuum.description": {
-      "x": 96.12,
-      "y": 105.35,
-      "width": 148.21,
-      "height": 109,
-      "fontSize": 13,
+      "x": 264.75,
+      "y": 227.85,
+      "width": 146.09,
+      "height": 107.44,
+      "fontSize": 12.81,
       "lineHeight": 1.65
     },
     "pcg-project.cover": {
-      "x": 554.58,
-      "y": 38.19,
-      "width": 382.79,
-      "height": 239.81
+      "x": 716.66,
+      "y": 161.64,
+      "width": 377.32,
+      "height": 236.38
     },
     "pcg-project.title": {
-      "x": 956.41,
-      "y": 136.78,
-      "width": 178,
-      "height": 58,
-      "fontSize": 23.76,
+      "x": 1112.75,
+      "y": 258.83,
+      "width": 175.46,
+      "height": 57.17,
+      "fontSize": 23.42,
       "lineHeight": 1.17
     },
     "pcg-project.description": {
-      "x": 955.65,
-      "y": 202.19,
-      "width": 178,
-      "height": 110,
-      "fontSize": 13,
+      "x": 1112,
+      "y": 323.3,
+      "width": 175.46,
+      "height": 108.43,
+      "fontSize": 12.81,
       "lineHeight": 1.65
     },
     "mixed-lives.cover": {
-      "x": 239.69,
-      "y": 288,
-      "width": 304.9,
-      "height": 343.01
+      "x": 406.27,
+      "y": 407.89,
+      "width": 300.54,
+      "height": 338.11
     },
     "mixed-lives.title": {
-      "x": 72.59,
-      "y": 428.47,
-      "width": 150.6,
-      "height": 30,
-      "fontSize": 23.76,
+      "x": 241.55,
+      "y": 546.35,
+      "width": 148.45,
+      "height": 29.57,
+      "fontSize": 23.42,
       "lineHeight": 1.17
     },
     "mixed-lives.description": {
-      "x": 0,
-      "y": 466.65,
-      "width": 220.9,
-      "height": 87,
-      "fontSize": 13,
+      "x": 170,
+      "y": 583.98,
+      "width": 217.74,
+      "height": 85.76,
+      "fontSize": 12.81,
       "lineHeight": 1.65
     },
     "dku-campus-tour.cover": {
-      "x": 554.58,
-      "y": 288,
-      "width": 285.19,
-      "height": 208.65
+      "x": 716.66,
+      "y": 407.89,
+      "width": 281.12,
+      "height": 205.67
     },
     "dku-campus-tour.title": {
-      "x": 584.36,
-      "y": 512.94,
-      "width": 330,
-      "height": 28,
-      "fontSize": 22,
+      "x": 746.01,
+      "y": 629.61,
+      "width": 325.29,
+      "height": 27.6,
+      "fontSize": 21.69,
       "lineHeight": 1.17
     },
     "dku-campus-tour.description": {
-      "x": 591.24,
-      "y": 543.83,
-      "width": 330,
+      "x": 752.79,
+      "y": 660.06,
+      "width": 325.29,
+      "height": 43.37,
+      "fontSize": 12.81,
+      "lineHeight": 1.65
+    },
+    "page.name": {
+      "x": 80,
+      "y": 27,
+      "width": 310,
+      "height": 46,
+      "fontSize": 42.75,
+      "lineHeight": 1.05
+    },
+    "page.subtitle": {
+      "x": 80,
+      "y": 79,
+      "width": 120,
+      "height": 17,
+      "fontSize": 12,
+      "lineHeight": 1.4
+    },
+    "page.cv": {
+      "x": 1238,
+      "y": 31,
+      "width": 122,
       "height": 44,
       "fontSize": 13,
-      "lineHeight": 1.65
+      "lineHeight": 1.4
+    },
+    "page.contact": {
+      "x": 1102,
+      "y": 840,
+      "width": 258,
+      "height": 36,
+      "fontSize": 13,
+      "lineHeight": 1.4
     }
   }
 }

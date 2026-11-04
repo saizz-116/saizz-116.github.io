@@ -6,6 +6,9 @@ import LayoutEditor from './editor/LayoutEditor';
 import { isLocalEditorHost } from './editor/layout';
 import EmotionalVacuumPage from './components/EmotionalVacuumPage';
 import DKUCampusExplorerPage from './components/DKUCampusExplorerPage';
+import { useDesktopLayout } from './editor/useDesktopLayout';
+import ProjectHeader from './components/ProjectHeader';
+import { useNavigationGeometry } from './components/useNavigationGeometry';
 
 function Arrow({ back = false }: { back?: boolean }) {
   return (
@@ -40,6 +43,8 @@ function RouteEffects() {
 }
 
 function Header() {
+  const desktop = useDesktopLayout();
+  const { geometry, buttonStyle } = useNavigationGeometry();
   const { pathname: routePathname } = useLocation();
   const pathname = routePathname.replace(/\/+$/, '') || '/';
   const isCv = pathname === '/cv';
@@ -55,30 +60,22 @@ function Header() {
     return () => controller.abort();
   }, []);
   if (isProject) return null;
+  if (pathname === '/' && desktop) return editorAvailable ? (
+    <nav className="home-editor-access" aria-label="Local editing"><Link to="/edit">编辑排版 ↗</Link></nav>
+  ) : null;
   return (
-    <header className="site-header">
-      <Link className="identity" to="/" aria-label={`${profile.name}, portfolio homepage`}>
-        {pathname === '/' ? <h1 className="identity-name">{profile.name}</h1> : <span className="identity-name">{profile.name}</span>}
-        <span className="identity-subtitle">Portfolio</span>
+    <header className="site-header" style={desktop ? { height: Math.max(geometry.name.y + geometry.name.height, geometry.subtitle.y + geometry.subtitle.height, geometry.top + geometry.height) + 12, paddingBlock: 0 } : undefined}>
+      <Link className="identity" to="/" aria-label={`${profile.name}, portfolio homepage`} style={desktop ? { position: 'absolute', left: geometry.name.x, top: geometry.name.y, width: geometry.name.width } : undefined}>
+        {pathname === '/' ? <h1 className="identity-name">{profile.name}</h1> : <span className="identity-name" style={desktop ? { fontSize: geometry.name.fontSize, lineHeight: geometry.name.lineHeight } : undefined}>{profile.name}</span>}
+        <span className="identity-subtitle" style={desktop ? { position: 'absolute', left: geometry.subtitle.x - geometry.name.x, top: geometry.subtitle.y - geometry.name.y, width: geometry.subtitle.width, marginTop: 0, fontSize: geometry.subtitle.fontSize, lineHeight: geometry.subtitle.lineHeight } : undefined}>Portfolio</span>
       </Link>
       <nav aria-label="Main navigation">
         {pathname === '/' && editorAvailable && <Link className="header-editor-link" to="/edit">编辑排版</Link>}
-        <Link className="header-link" to={isCv ? '/' : '/cv'}>
+        <Link className="header-link site-header-navigation-button" style={{ ...buttonStyle, left: geometry.cvLeft }} to={isCv ? '/' : '/cv'}>
           {isCv ? 'Portfolio' : 'CV'}<Arrow back={isCv} />
         </Link>
       </nav>
     </header>
-  );
-}
-
-function ProjectPortfolioNav() {
-  return (
-    <nav className="project-side-nav" aria-label="Project navigation">
-      <Link className="project-back-link" to="/" aria-label="Back to portfolio">
-        <span>Portfolio</span><Arrow back />
-      </Link>
-      <Link className="project-mobile-cv" to="/cv">CV<Arrow /></Link>
-    </nav>
   );
 }
 
@@ -173,7 +170,6 @@ function ProjectPage() {
           <div className="project-heading-text">
             <h1>{project.title}</h1>
           </div>
-          <nav aria-label="Main navigation"><Link className="header-link" to="/cv">CV<Arrow /></Link></nav>
         </header>
         <div className="project-canvas" />
         <nav className="project-navigation" aria-label="Other projects">
@@ -199,12 +195,13 @@ export default function App() {
   const { pathname: routePathname } = useLocation();
   const pathname = routePathname.replace(/\/+$/, '') || '/';
   const isProject = pathname.startsWith('/work/');
+  const currentProject = isProject ? getProject(pathname.split('/')[2]) : undefined;
   if (pathname === '/edit') return <LayoutEditor />;
   return (
-    <div className={`site-shell${isProject ? ' site-shell--project' : ''}${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}`}>
+    <div className={`site-shell${pathname === '/' ? ' site-shell--home' : ''}${pathname === '/cv' ? ' site-shell--cv' : ''}${isProject ? ' site-shell--project' : ''}${pathname === '/work/emotional-vacuum' ? ' site-shell--ev' : ''}${pathname === '/work/dku-campus-tour' ? ' site-shell--dku' : ''}`}>
       <a className="skip-link" href="#main">Skip to content</a>
-      <RouteEffects /><Header />
-      {isProject && <ProjectPortfolioNav />}
+      <RouteEffects />{!isProject && <Header />}
+      {currentProject && <ProjectHeader key={currentProject.slug} project={currentProject} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cv" element={<CV />} />
