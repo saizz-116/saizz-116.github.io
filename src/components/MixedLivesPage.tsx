@@ -41,29 +41,28 @@ export default function MixedLivesPage({ project }: { project: Project }) {
     <main className="ml-page" id="main" tabIndex={-1}>
       <div className="ml-container">
         <header className="ml-introduction">
-          <div className="ml-title-block">
+          <div className="ml-hero-copy">
             <p className="ml-kicker">Narrative cocktail game / Unity</p>
             <h1>{project.title}</h1>
+            <div className="ml-introduction-copy">
+              <p>A hand-drawn narrative cocktail game set across seven nights at a bar. Read each guest’s request, combine spirits and ingredients, and follow visual feedback for taste, aroma, and texture as you mix and serve their drink.</p>
+              <VideoPlayButton label="Watch gameplay demo" duration={durationLabel} onClick={playFilm} />
+            </div>
           </div>
-          <div className="ml-introduction-copy">
-            <p>A hand-drawn narrative cocktail game set across seven nights at a bar. Read each guest’s request, combine spirits and ingredients, and follow visual feedback for taste, aroma, and texture as you mix and serve their drink.</p>
-            <VideoPlayButton label="Watch gameplay demo" duration={durationLabel} onClick={playFilm} />
-          </div>
+          <figure className="ml-cover">
+            <img
+              src={`${media}cover-one.webp`}
+              srcSet={`${media}cover-one-800.webp 800w, ${media}cover-one.webp 1920w`}
+              sizes="(max-width: 650px) calc(100vw - 40px), (max-width: 850px) calc(100vw - 112px), (max-width: 1500px) 56vw, 800px"
+              alt="Hand-drawn artwork of Morgan and Riley seated at the warmly lit cocktail bar"
+              width="1920"
+              height="1080"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </figure>
         </header>
-
-        <figure className="ml-cover">
-          <img
-            src={`${media}cover-one.webp`}
-            srcSet={`${media}cover-one-800.webp 800w, ${media}cover-one.webp 1920w`}
-            sizes="(max-width: 650px) calc(100vw - 40px), (max-width: 1500px) calc(100vw - 112px), 1400px"
-            alt="Hand-drawn artwork of Morgan and Riley seated at the warmly lit cocktail bar"
-            width="1920"
-            height="1080"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </figure>
 
         <section className="ml-film" aria-labelledby="ml-film-heading">
           <div className="ml-section-heading">
