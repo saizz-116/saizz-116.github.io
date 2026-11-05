@@ -57,8 +57,9 @@ Keep these rules when editing:
 - Keep exactly four primary projects: **Mixed Lives**, **Gaudí-Inspired Procedural House**, **Emotional Vacuum**, and **DKU Campus Explorer**.
 - Mixed Lives uses the owner's supplied artwork. Emotional Vacuum uses the approved frame from the supplied demo. DKU Campus Explorer uses a real frame from the owner's gameplay recording. The house cover stays a solid color until real images are supplied. Do not generate substitute artwork or screenshots.
 - Do not add illustrative-placeholder badges, tiny placeholder labels, gratuitous taglines, or filler descriptions.
-- Emotional Vacuum and DKU Campus Explorer have authored case studies based on supplied project materials. Keep the other project pages empty apart from their heading and navigation until their materials are supplied.
-- Project pages use one fixed top bar: Portfolio on the left, the project title in the middle, and CV on the right. Align the two buttons with the centered body and hero's outer edges, using the same content frame as the homepage and CV; their size and typography follow the saved homepage CV control. Keep generous symmetric gutters; do not reserve a left sidebar or place controls against the viewport edges. When Emotional Vacuum's original chapter strip has scrolled above the top bar, show its chapters in the bar's middle area and mark the current section. Mobile uses a chapter selector (a menu icon on very narrow screens). Reserve space for the fixed header and anchor targets.
+- Write public project copy in the author's voice. Keep delivery explanations, asset-sorting notes, and verification caveats in local working notes; captions should explain the work. Retain source and licence credits and concise experiment conditions where they help the reader.
+- Emotional Vacuum, DKU Campus Explorer, and Mixed Lives have authored case studies based on supplied project materials. Mixed Lives follows `material/mixedlivespage-prompt/指令.txt` and the supplied colour-development note; keep its headings descriptive, its personal design intentions grounded in those notes, and its game rules consistent with the Unity source. Its failure consequences are planned work; do not present consequence-free service as the intended narrative design. Keep PCG technical details bounded by its supplied materials.
+- Project pages use one fixed top bar: Portfolio on the left, the project title in the middle, and CV on the right. Align the two buttons with the centered body and hero's outer edges, using the same content frame as the homepage and CV; their size and typography follow the saved homepage CV control. Keep generous symmetric gutters; do not reserve a left sidebar or place controls against the viewport edges. When Emotional Vacuum's or Mixed Lives' original chapter strip has scrolled above the top bar, show its chapters in the bar's middle area and mark the current section. Mobile uses a chapter selector (a menu icon on very narrow screens). Reserve space for the fixed header and anchor targets.
 - Verify desktop and mobile layouts visually after layout changes: assess spacing, alignment, type hierarchy, touch targets, horizontal overflow, and overall balance as well as functional behavior. The local graphical layout editor remains a desktop tool.
 - Keep the web CV concise and curated. Exclude GPA, scholarships, and telephone numbers.
 - Do not publish the original CV PDF or add a download link to it. The public CV is HTML rendered from the curated content data.
@@ -71,7 +72,7 @@ Keep these rules when editing:
 | `/` | Four-project homepage |
 | `/cv` | Combined profile and curated web CV |
 | `/edit` | Local graphical homepage layout editor |
-| `/work/mixed-lives` | Mixed Lives |
+| `/work/mixed-lives` | Mixed Lives: design case study, gameplay demo, colour experiment, recipe graph, and seven-night narrative structure |
 | `/work/pcg-project` | Gaudí-Inspired Procedural House |
 | `/work/emotional-vacuum` | Emotional Vacuum: full English design and development case study |
 | `/work/dku-campus-tour` | DKU Campus Explorer: campus guide game project |

@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { CSSProperties } from 'react';
 import type { Project } from '../types';
-import { emotionalVacuumChapters } from '../data/projectChapters';
+import { emotionalVacuumChapters, mixedLivesChapters } from '../data/projectChapters';
 import { useNavigationGeometry } from './useNavigationGeometry';
 
 function NavArrow({ back = false }: { back?: boolean }) {
@@ -12,7 +12,7 @@ function NavArrow({ back = false }: { back?: boolean }) {
 export default function ProjectHeader({ project }: { project: Project }) {
   const { geometry, buttonStyle, viewport } = useNavigationGeometry();
   const [showChapters, setShowChapters] = useState(false);
-  const chapters = project.slug === 'emotional-vacuum' ? emotionalVacuumChapters : [];
+  const chapters = project.slug === 'emotional-vacuum' ? emotionalVacuumChapters : project.slug === 'mixed-lives' ? mixedLivesChapters : [];
   const [active, setActive] = useState(chapters[0]?.id ?? '');
   const { headerHeight } = geometry;
 
@@ -26,15 +26,37 @@ export default function ProjectHeader({ project }: { project: Project }) {
   useEffect(() => {
     const marker = document.getElementById('project-chapters');
     if (!chapters.length || !marker) return;
+    const chapterThreshold = headerHeight + (project.slug === 'mixed-lives' ? 16 : 0);
     const observer = new IntersectionObserver(([entry]) => {
-      setShowChapters(entry.boundingClientRect.bottom <= headerHeight + 1);
-    }, { rootMargin: `-${headerHeight}px 0px 0px 0px`, threshold: 0 });
+      setShowChapters(entry.boundingClientRect.bottom <= chapterThreshold + 1);
+    }, { rootMargin: `-${chapterThreshold}px 0px 0px 0px`, threshold: 0 });
     observer.observe(marker);
-    const sections = new IntersectionObserver(entries => {
+    const sections = project.slug === 'mixed-lives' ? null : new IntersectionObserver(entries => {
       for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
     }, { rootMargin: `-${headerHeight + 16}px 0px -${Math.max(0, viewport.height - headerHeight - 120)}px 0px`, threshold: 0 });
-    chapters.forEach(chapter => { const section = document.getElementById(chapter.id); if (section) sections.observe(section); });
-    return () => { observer.disconnect(); sections.disconnect(); };
+    chapters.forEach(chapter => { const section = document.getElementById(chapter.id); if (section) sections?.observe(section); });
+    let frame = 0;
+    const updateActiveChapter = () => {
+      frame = 0;
+      let current = chapters[0].id;
+      for (const chapter of chapters) {
+        const section = document.getElementById(chapter.id);
+        if (section && section.getBoundingClientRect().top <= headerHeight + 24) current = chapter.id;
+      }
+      setActive(current);
+    };
+    const queueChapterUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(updateActiveChapter);
+    };
+    if (project.slug === 'mixed-lives') {
+      window.addEventListener('scroll', queueChapterUpdate, { passive: true });
+      updateActiveChapter();
+    }
+    return () => {
+      observer.disconnect(); sections?.disconnect();
+      window.removeEventListener('scroll', queueChapterUpdate);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, [project.slug, headerHeight, viewport.height, chapters]);
 
   const centerGap = viewport.viewportWidth <= 380 ? 0 : viewport.viewportWidth <= 1100 ? 10 : 26 * geometry.scale;
@@ -62,7 +84,7 @@ export default function ProjectHeader({ project }: { project: Project }) {
             <select className="project-header-chapter-select" aria-label="Project chapters" value={active} onChange={event => {
               const id = event.target.value;
               setActive(id);
-              document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+              document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: project.slug === 'mixed-lives' || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
             }}>{chapters.map(chapter => <option value={chapter.id} key={chapter.id}>{chapter.label}</option>)}</select>
           </div>}
         </div>

@@ -5,6 +5,7 @@ import { projects } from '../data/portfolio';
 import { mixedLivesAudioLicense, mixedLivesMusic, mixedLivesSoundEffects } from '../data/mixedLivesAudio';
 import type { MixedLivesAudioCredit } from '../data/mixedLivesAudio';
 import VideoPlayButton from './VideoPlayButton';
+import MixedLivesStudy from './MixedLivesStudy';
 import './mixed-lives.css';
 
 const media = '/media/mixed-lives/';
@@ -46,7 +47,6 @@ export default function MixedLivesPage({ project }: { project: Project }) {
             <h1>{project.title}</h1>
             <div className="ml-introduction-copy">
               <p>A hand-drawn narrative cocktail game set across seven nights at a bar. Read each guest’s request, combine spirits and ingredients, and follow visual feedback for taste, aroma, and texture as you mix and serve their drink.</p>
-              <p className="ml-update-note">Design detail to be updated here soon.</p>
               <VideoPlayButton label="Watch gameplay demo" duration={durationLabel} onClick={playFilm} />
             </div>
           </div>
@@ -100,6 +100,8 @@ export default function MixedLivesPage({ project }: { project: Project }) {
             </div>
           </details>
         </section>
+
+        <MixedLivesStudy />
 
         <nav className="project-navigation ml-navigation" aria-label="Other projects">
           {projects.filter(item => item.id !== project.id).map(item => (
