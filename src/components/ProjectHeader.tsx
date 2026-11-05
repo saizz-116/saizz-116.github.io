@@ -38,6 +38,7 @@ export default function ProjectHeader({ project }: { project: Project }) {
     let frame = 0;
     const updateActiveChapter = () => {
       frame = 0;
+      setShowChapters(marker.getBoundingClientRect().bottom <= chapterThreshold + 1);
       let current = chapters[0].id;
       for (const chapter of chapters) {
         const section = document.getElementById(chapter.id);

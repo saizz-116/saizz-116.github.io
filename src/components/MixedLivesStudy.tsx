@@ -74,13 +74,16 @@ function StoryTimeline() {
   const current = mlDays[day - 1];
   return <div className="ml-story-timeline">
     <div className="ml-subheading"><h3>Seven-night structure</h3><p>Follow a day to read its narrative beats.</p></div>
+    <div className="ml-story-workbench">
     <div className="ml-day-buttons" role="group" aria-label="Choose a story day">
       {mlDays.map(item => <button key={item.day} type="button" onClick={() => setDay(item.day)} aria-pressed={day === item.day}>Day {item.day}</button>)}
     </div>
+    <div className="ml-story-layout">
+    <div className="ml-story-overview">
     <div className="ml-timeline-scroll" tabIndex={0} role="region" aria-label="Character visits across seven days; scroll horizontally on a small screen">
       <svg viewBox="0 0 1060 482" className="ml-timeline-svg" role="img" aria-labelledby="ml-timeline-title ml-timeline-desc">
         <title id="ml-timeline-title">Character visits across seven nights</title>
-        <desc id="ml-timeline-desc">Seven horizontal character lines. Filled points mark assigned orders and hollow points mark appearances in other conversations. The day buttons below provide the story in text.</desc>
+        <desc id="ml-timeline-desc">Seven horizontal character lines. Filled points mark assigned orders and hollow points mark appearances in other conversations. The day buttons above provide the story in text.</desc>
         <rect x={180 + (day - 1) * 132} y="15" width="92" height="452" className="ml-timeline-selection" rx="2" />
         {mlDays.map(item => <g key={item.day}><text x={226 + (item.day - 1) * 132} y="38" textAnchor="middle" className="ml-chart-day">DAY {item.day}</text><line x1={226 + (item.day - 1) * 132} x2={226 + (item.day - 1) * 132} y1="57" y2="455" className="ml-chart-grid" /></g>)}
         {mlCharacters.map((character, index) => {
@@ -97,13 +100,14 @@ function StoryTimeline() {
       </svg>
     </div>
     <p className="ml-chart-legend"><span>● Assigned order</span><span>○ Appears in another conversation</span><span>Lines show continuity between appearances.</span></p>
-    <div className="ml-day-detail" aria-live="polite">
-      <div><span className="ml-eyebrow">Day {day} / {current.orders.length} orders</span><h4>{current.title}</h4><ul>{current.milestones.map(milestone => <li key={milestone}>{milestone}</li>)}</ul></div>
-      <ol>{current.orders.map((order, index) => {
+    <div className="ml-day-summary" aria-live="polite"><span className="ml-eyebrow">Day {day} / {current.orders.length} orders</span><h4>{current.title}</h4><ul>{current.milestones.map(milestone => <li key={milestone}>{milestone}</li>)}</ul></div>
+    </div>
+      <ol className="ml-day-orders" aria-label={`Day ${day} orders`} aria-live="polite">{current.orders.map((order, index) => {
         const character = mlCharacters.find(person => person.visits.some(visit => visit.order === order));
         const visit = character?.visits.find(item => item.order === order);
         return <li key={order}><span>{index + 1}</span><div><h5>{character?.name} <span>{visit?.label}</span></h5><p>{visit?.detail}</p></div></li>;
       })}</ol>
+    </div>
     </div>
   </div>;
 }
@@ -173,7 +177,7 @@ export default function MixedLivesStudy() {
         ['Pour and decide', 'Serve the drink, or use Drink Myself to discard it and remake the same order.'],
         ['See the response', 'The guest reacts to the served drink. A matching classic can also be recognised.'],
       ].map(([title, text], index) => <li key={title}><span>0{index + 1}</span><h4>{title}</h4><p>{text}</p>{index < 4 && <b aria-hidden="true">→</b>}</li>)}</ol>
-      <Photo file="mixing-overview" alt="The order board, selected ingredients, shaker, and flavour disc in the final mixing interface" caption="The order board sits below the disc on the left; ingredients occupy the shelf on the right. Feedback and the request remain visible while mixing." onOpen={setSelectedImage} />
+      <Photo className="ml-mixing-overview" file="mixing-overview" alt="The order board, selected ingredients, shaker, and flavour disc in the final mixing interface" caption="The order board sits below the disc on the left; ingredients occupy the shelf on the right. Feedback and the request remain visible while mixing." onOpen={setSelectedImage} />
 
       <div className="ml-wheel-intro"><div><p className="ml-eyebrow">Visual feedback</p><h3>Flavour disc</h3><div className="ml-prose"><p>Real flavour wheels organise sensory vocabulary. The Scotch Whisky Research Institute developed its wheel with industry blenders in 1979; it helps people name and compare what they perceive.</p><p>I borrowed that organising idea and made it into an imagined object on the counter. The disc responds to the player’s mixture, giving it a slightly surreal role: an instrument that makes taste visible.</p></div><Source href="https://www.swri.co.uk/timeline/1979-2/">SWRI / flavour wheel</Source></div><figure className="ml-external-wheel"><img src={`${root}reference-flavor-wheel.webp`} width="400" height="399" alt="The Scotch Whisky Research Institute flavour wheel, grouping descriptive sensory terms" loading="lazy" /><figcaption>Reference: Scotch Whisky Research Institute flavour wheel. © SWRI. <Source href="https://www.swri.co.uk/timeline/1979-2/">Original</Source></figcaption></figure></div>
       <div className="ml-wheel-anatomy">
@@ -213,7 +217,6 @@ export default function MixedLivesStudy() {
       </div>
       <div className="ml-narrative-arcs"><article><h3>Riley & Dylan</h3><p>A band wants to play at the bar. Their first ticketed-show proposal does not fit the room; they revise the plan into a short set with clear limits. The trial on night six leads to a recurring Friday slot. Their arc is about adjusting an ambition to the people and place around it.</p></article><article><h3>Hazel & Elliot</h3><p>An artist struggling with a comic ending and an editor waiting for pages first appear separately. Their stories connect through the same deadline. Progress comes when the discussion moves from pressure to specific unfinished panels; the accepted chapter makes room for an evening together.</p></article><article><h3>Nora, June & Morgan</h3><p>A newcomer learns the route home, a regular values having somewhere to talk, and the owner negotiates what the bar can become. Their quieter continuity gives the larger events a social setting: a place becomes familiar through returning to it.</p></article></div>
       <StoryTimeline />
-      <div className="ml-next-iteration"><span className="ml-eyebrow">Next iteration</span><h3>Failure consequences</h3><p>I plan to add penalties for unsuccessful service. Defining those consequences and their relationship to character progression is the next part of the narrative design.</p></div>
     </section>
 
     <section className="ml-study-section" id="ml-art" aria-labelledby="ml-06-heading">
