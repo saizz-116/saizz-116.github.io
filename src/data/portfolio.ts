@@ -60,6 +60,13 @@ export const profile: Profile = {
   ],
   projectEntries: [
     {
+      slug: 'mixed-lives',
+      role: 'Game design & Unity development',
+      period: 'Jul 2026–present',
+      description:
+        'Designed a narrative cocktail simulation in Unity, combining flexible ingredient-based orders, a seven-night bar loop, guest dialogue, and a hand-drawn mixing interface.',
+    },
+    {
       slug: 'emotional-vacuum',
       role: 'Team lead & Unity developer',
       period: 'Sep–Oct 2026',
@@ -72,13 +79,6 @@ export const profile: Profile = {
       period: 'Aug 2026–present',
       description:
         'Created a Gaudí-inspired architectural generator with VEX-driven forms, an undulating roof, and exposed Houdini Digital Asset controls for Unreal Engine.',
-    },
-    {
-      slug: 'mixed-lives',
-      role: 'Game design & Unity development',
-      period: 'Jul 2026–present',
-      description:
-        'Designed a narrative cocktail simulation in Unity, combining flexible ingredient-based orders, a seven-night bar loop, guest dialogue, and a hand-drawn mixing interface.',
     },
     {
       slug: 'dku-campus-tour',
