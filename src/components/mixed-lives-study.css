@@ -147,14 +147,18 @@ html:has(.ml-page) { scroll-behavior: auto; }
 .ml-day-orders h5 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 12px; font-size: 16px; color: #d7dfbb; line-height: 1.4; }
 .ml-day-orders h5 span { font-size: 13px; color: #b6bf9f; }
 .ml-day-orders p { font-size: 14px; line-height: 1.6; color: var(--ml-muted); margin-top: 6px; }
-.ml-sketch-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px 24px; }
-.ml-sketch-grid .ml-study-image { padding: 12px; background: #d5cdb9; }
-.ml-sketch-grid img { height: 205px; object-fit: contain; }
+.ml-art-process { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px 24px; list-style: none; margin: 0; padding: 0; }
+.ml-art-process > li { min-width: 0; padding-top: 14px; border-top: 1px solid var(--ml-rule); }
+.ml-art-step-heading { display: flex; align-items: baseline; gap: 12px; min-height: 38px; }
+.ml-art-step-heading > span { color: var(--ml-accent); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ml-art-step-heading h4 { font-family: var(--serif); font-size: 23px; line-height: 1.25; letter-spacing: -.02em; }
+.ml-art-process .ml-study-image { padding: 10px; background: #d5cdb9; }
+.ml-art-process img { height: 205px; object-fit: contain; }
+.ml-art-process .ml-study-photo figcaption { color: #b9bdae; font-size: 15px; line-height: 1.65; }
 .ml-art-final { display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; gap: 32px; margin-top: 34px; }
-.ml-art-final h3 { margin-bottom: 23px; }
-.ml-art-final ol { color: #b9bdae; margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.65; }
-.ml-art-final li + li { margin-top: 17px; }
-.ml-art-final strong { display: block; color: #dde0ce; font-weight: 400; }
+.ml-art-final h3 { margin-bottom: 16px; }
+.ml-art-guidance p { color: #b9bdae; font-size: 15px; line-height: 1.65; }
+.ml-art-guidance h4 { margin-top: 18px; margin-bottom: 7px; color: #dde0ce; font-size: 16px; line-height: 1.4; }
 .ml-ingredient-gallery { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 22px; }
 .ml-ingredient-gallery .ml-study-image { background: #23271f; padding: 18px; }
 .ml-ingredient-gallery img { height: 185px; object-fit: contain; }
@@ -173,6 +177,7 @@ html:has(.ml-page) { scroll-behavior: auto; }
 .ml-study-dialog figcaption { font-size: 13px; line-height: 1.7; margin-top: 15px; }
 .ml-dialog-close { position: absolute; top: 8px; right: 18px; padding: 7px 10px; min-height: 36px; color: #eee9dc; background: #30372a; border: 1px solid #606950; cursor: pointer; }
 @media (max-width: 1100px) {
+  .ml-art-process { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .ml-references, .ml-stage-list { grid-template-columns: 1fr 1fr; gap: 34px 28px; }
   .ml-study-heading, .ml-mechanic-note { gap: 35px; }
   .ml-origin-layout, .ml-playtest-layout, .ml-wheel-intro, .ml-wheel-anatomy, .ml-art-final { gap: 35px; }
@@ -250,9 +255,11 @@ html:has(.ml-page) { scroll-behavior: auto; }
   .ml-story-timeline { margin-top: 40px; }
   .ml-day-buttons { gap: 8px; }
   .ml-day-buttons button { padding-inline: 14px; min-height: 44px; }
-  .ml-sketch-grid { grid-template-columns: 1fr 1fr; gap: 25px 16px; }
-  .ml-sketch-grid img { height: 180px; }
-  .ml-sketch-grid .ml-study-image { padding: 8px; }
+  .ml-art-process { grid-template-columns: 1fr; gap: 26px; }
+  .ml-art-step-heading { min-height: 36px; }
+  .ml-art-process img { height: auto; max-height: 310px; }
+  .ml-art-process .ml-study-image { padding: 8px; }
+  .ml-art-process figcaption { font-size: 15px; }
   .ml-art-final { grid-template-columns: 1fr; gap: 28px; margin-top: 35px; }
   .ml-ingredient-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 25px 16px; }
   .ml-ingredient-gallery img { height: 210px; }

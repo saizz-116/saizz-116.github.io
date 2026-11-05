@@ -69,6 +69,39 @@ const stageIntentions = [
   { title: 'Independent mixing', text: 'Pineapple, Campari, and vermouth expand the recipe network. The final night ends with an unrestricted drink, giving the player room to use what they have learned.' },
 ];
 
+const artProcess = [
+  {
+    file: 'sketch-03', title: 'Counter layout',
+    alt: 'Early sketch of a perspective counter, with ingredient cards around a shaker and a three-axis taste disc beside it',
+    text: 'I arranged ingredient cards around a shaker on a receding tabletop, exploring the counter as a physical workspace. A separate three-axis disc sat beside it.',
+  },
+  {
+    file: 'sketch-04', title: 'Disc and sensory layers',
+    alt: 'Second counter sketch extending the taste disc with aroma labels and studies of bubbles and cream for mouthfeel',
+    text: 'I extended the disc with aroma labels around its edge and sketched bubbles and cream for mouthfeel. These studies explored how one visual object could carry a growing sensory vocabulary.',
+  },
+  {
+    file: 'sketch-01', title: 'Screen structure',
+    alt: 'Planning diagram connecting dialogue and orders, mixing, and a proposed ingredient and recipe record',
+    text: 'I then mapped how dialogue, mixing, and a record of ingredients and recipes could connect. The exploration expanded from individual objects to the player’s route between screens.',
+  },
+  {
+    file: 'sketch-02', title: 'Screen composition',
+    alt: 'Composition studies separating the guest view from mixing, with the disc on the left, ingredients on the right, and a pouring study below',
+    text: 'I separated the guest view from the mixing view and tested the positions of the disc, ingredients, shaker, and glass. Conversation and preparation could each have their own visual focus.',
+  },
+  {
+    file: 'sketch-05', title: 'Flat layout',
+    alt: 'Flat colour-block study placing a pale disc on the left and a front-facing ingredient shelf on the right',
+    text: 'I replaced the angled card arrangement with a front-facing shelf. A fixed display makes the available stock and the ingredients still waiting to unlock easier to compare.',
+  },
+  {
+    file: 'sketch-06', title: 'Painted draft',
+    alt: 'Painted bar draft with a bright disc area against brickwork on the left and warm backlit shelves with bottle silhouettes on the right',
+    text: 'I developed the flat layout into a warm, backlit bar, keeping the pale disc distinct on the left and bottle silhouettes grouped on the right. Lighting and contrast guide attention within the hand-drawn scene.',
+  },
+];
+
 function StoryTimeline() {
   const [day, setDay] = useState(1);
   const current = mlDays[day - 1];
@@ -220,17 +253,13 @@ export default function MixedLivesStudy() {
     </section>
 
     <section className="ml-study-section" id="ml-art" aria-labelledby="ml-06-heading">
-      <Heading number="06" title="Art"><p>The hand-drawn bar has two jobs: establish an intimate place to meet people, and make the mixing system easy to read. The layout studies explore where the guest, ingredient stock, order, and flavour feedback should sit in that shared space.</p></Heading>
-      <div className="ml-subheading"><h3>Layout studies</h3><p>From flow diagrams and paper arrangements to the painted counter.</p></div>
-      <div className="ml-sketch-grid">{[
-        ['sketch-01', 'Interface flow', 'Diagram of interface views and the transitions between them.'],
-        ['sketch-02', 'View arrangement', 'Rough layout study for the guest and mixing views.'],
-        ['sketch-03', 'Starting ingredients', 'Hand-drawn layout study of the initial stock and taste axes.'],
-        ['sketch-04', 'Later-stage stock', 'Ingredient and interface planning for later stages.'],
-        ['sketch-05', 'Colour and hierarchy', 'Colour-block study of the counter and information areas.'],
-        ['sketch-06', 'Painted layout', 'Drawn layout study bringing the elements into the bar setting.'],
-      ].map(([file, label, alt]) => <Photo key={file} file={file} alt={alt} caption={label} onOpen={setSelectedImage} />)}</div>
-      <div className="ml-art-final"><Photo file="stage-04" alt="Current fully unlocked mixing interface with the feedback disc on the left and ingredient stock on the right" caption="Current layout / a stable order board and flavour display on the left, with the stock on the right." onOpen={setSelectedImage} /><div><h3>Information hierarchy</h3><ol><li><strong>The request stays visible.</strong> The board holds the conditions while the player works.</li><li><strong>The result sits near the action.</strong> The disc connects ingredient selection to immediate feedback.</li><li><strong>The shelf reveals progress.</strong> Fixed positions let the stock become familiar; shadowed items show what remains to unlock.</li></ol></div></div>
+      <Heading number="06" title="Art"><p>These studies trace my exploration of the game’s screens: from a spatial counter with ingredient cards to a flatter layout organised around reading an order, choosing ingredients, and seeing the result. I developed the screen structure, counter, and flavour disc together, looking for ways to guide attention within the hand-drawn bar.</p></Heading>
+      <div className="ml-subheading"><h3>Interface design process</h3><p>Early counter sketches, screen planning, and the painted layout.</p></div>
+      <ol className="ml-art-process">{artProcess.map((step, index) => <li key={step.file}>
+        <div className="ml-art-step-heading"><span>{String(index + 1).padStart(2, '0')}</span><h4>{step.title}</h4></div>
+        <Photo file={step.file} alt={step.alt} caption={step.text} onOpen={setSelectedImage} />
+      </li>)}</ol>
+      <div className="ml-art-final"><Photo file="stage-02" alt="Current flat mixing interface with available ingredients and dark locked silhouettes displayed in fixed shelf positions" caption="Current interface / available ingredients and locked silhouettes share a fixed, front-facing shelf." onOpen={setSelectedImage} /><div className="ml-art-guidance"><h3>Visual guidance</h3><p>I changed the counter’s projection to make unlock progress clearer. The flat shelf gives each ingredient a stable place, so available stock and the silhouettes of future ingredients can be read together.</p><h4>Request and result</h4><p>The order board stays below the disc on the left; ingredient choices sit on the right. This gives the player a consistent route between choosing an ingredient and checking its effect against the request.</p><h4>Disc design</h4><p>The early axis diagram develops into a pale, hand-drawn instrument within the bar. Its central triangle, outer aroma indicators, and texture treatments keep different sensory layers gathered in one place. Contrast makes the disc a visual anchor while its changing contents guide the next choice.</p></div></div>
       <div className="ml-subheading"><h3>Ingredient illustrations</h3><p>Distinct silhouettes, labels, and small material details.</p></div>
       <div className="ml-ingredient-gallery">{[
         ['ingredient-gin', 'Gin', 'A botanical bottle silhouette and its hand-drawn label.'],
