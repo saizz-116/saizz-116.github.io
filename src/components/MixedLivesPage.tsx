@@ -77,13 +77,13 @@ export default function MixedLivesPage({ project }: { project: Project }) {
             preload="metadata"
             width="1600"
             height="900"
-            poster={`${media}demo-poster.webp`}
+            poster={`${media}demo-v2-poster.webp`}
             aria-label="Mixed Lives gameplay demo showing guest dialogue, cocktail mixing, and flavour feedback"
             onLoadedMetadata={event => setDuration(Number.isFinite(event.currentTarget.duration) ? event.currentTarget.duration : null)}
           >
-            <source src={`${media}demo.mp4`} type="video/mp4" />
-            <track kind="subtitles" src={`${media}demo-guide.vtt`} srcLang="en" label="Feature guide (English)" />
-            Your browser does not support this video. <a href={`${media}demo.mp4`}>Open the gameplay demo</a>.
+            <source src={`${media}demo-v2.mp4`} type="video/mp4" />
+            <track kind="subtitles" src={`${media}demo-guide.vtt?v=2`} srcLang="en" label="Feature guide (English)" />
+            Your browser does not support this video. <a href={`${media}demo-v2.mp4`}>Open the gameplay demo</a>.
           </video>
           <details className="ml-audio-credits">
             <summary>Audio credits<span>Music & sound sources</span></summary>

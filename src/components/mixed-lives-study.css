@@ -163,11 +163,14 @@ html:has(.ml-page) { scroll-behavior: auto; }
 .ml-ingredient-gallery .ml-study-image { background: #23271f; padding: 18px; }
 .ml-ingredient-gallery img { height: 185px; object-fit: contain; }
 .ml-ingredient-gallery figcaption { color: #d5d9c3; text-align: center; }
-.ml-reflection-questions { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px; }
-.ml-reflection-questions article { border-top: 1px solid var(--ml-rule); padding-top: 20px; }
-.ml-reflection-questions span { color: var(--ml-accent); font-size: 11px; }
-.ml-reflection-questions h3 { font-size: 25px; margin-block: 18px 15px; }
-.ml-reflection-questions p { font-size: 15px; line-height: 1.65; color: var(--ml-muted); }
+.ml-reflection-lessons { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px; }
+.ml-reflection-lessons article { border-top: 1px solid var(--ml-rule); padding-top: 20px; }
+.ml-reflection-lessons span { color: var(--ml-accent); font-size: 11px; }
+.ml-reflection-lessons h3 { font-size: 25px; margin-block: 18px 15px; }
+.ml-reflection-lessons p { font-size: 15px; line-height: 1.65; color: var(--ml-muted); }
+.ml-reflection-next { display: grid; grid-template-columns: 150px minmax(0,1fr); align-items: baseline; gap: 24px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--ml-rule); }
+.ml-reflection-next h3 { margin: 0; font-size: 22px; }
+.ml-reflection-next p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ml-muted); }
 .ml-study-footer { padding-block: 26px 40px; }
 .ml-back-top { color: #d0d7b5; font-size: 12px; }
 .ml-study-dialog { border: 1px solid #505747; background: #191a18; color: #eee9dc; padding: 50px 24px 22px; max-width: min(1400px,94vw); max-height: 94svh; width: max-content; }
@@ -264,8 +267,9 @@ html:has(.ml-page) { scroll-behavior: auto; }
   .ml-ingredient-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 25px 16px; }
   .ml-ingredient-gallery img { height: 210px; }
   .ml-ingredient-gallery .ml-study-image { padding: 15px; }
-  .ml-reflection-questions { grid-template-columns: 1fr; gap: 25px; }
-  .ml-reflection-questions h3 { margin-block: 13px 12px; }
+  .ml-reflection-lessons { grid-template-columns: 1fr; gap: 25px; }
+  .ml-reflection-lessons h3 { margin-block: 13px 12px; }
+  .ml-reflection-next { grid-template-columns: 1fr; gap: 10px; }
   .ml-study-footer { padding-block: 22px 30px; }
   .ml-study-dialog { padding-inline: 14px; }
   .ml-study-photo figcaption { font-size: 12px; }
