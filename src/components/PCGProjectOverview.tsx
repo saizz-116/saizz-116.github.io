@@ -1,6 +1,7 @@
 import type { Project } from '../types';
 import PCGHouseCutout from './PCGHouseCutout';
 import PCGTextureBackground from './PCGTextureBackground';
+import PCGProcessVideos from './PCGProcessVideos';
 import { usePCGMedia } from './usePCGMedia';
 import './pcg-project.css';
 
@@ -20,5 +21,5 @@ export default function PCGProjectOverview({ project }: { project: Project }) {
         <figure className="pcg-house pcg-house--render"><PCGHouseCutout variant="render" source={media.render} /></figure>
       </div>
     </div>
-  </section></>;
+  </section><PCGProcessVideos /></>;
 }

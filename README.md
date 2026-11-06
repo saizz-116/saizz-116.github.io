@@ -153,6 +153,8 @@ The blue and pale brown watercolor textures repeat as 320px tiles. Tiny inline p
 
 `PCGProjectOverview.tsx` uses the supplied introduction and technical-detail update notice. The two houses retain their static staggered composition. `src/data/pcg-cutout-outlines.json` preserves the original code-defined silhouettes for reproducible alpha export. The clean rectangular render remains the homepage cover through `cover-images.ts`; `python scripts/prepare-pcg-overview.py` regenerates its hashed delivery variants. No node-network panel is displayed. Old supplied artwork and public exports stay intact.
 
+`PCGProcessVideos.tsx` displays the two complete process recordings below the overview: Houdini / 3ds Max, then Unreal Engine / Substance Designer / Houdini. Run `python scripts/prepare-pcg-videos.py` to export the originals in ignored `material/pcg/videos/` as 1920px H.264 MP4s with AAC audio and fast-start metadata, plus WebP posters from the actual footage. The script uses the local Houdini FFmpeg with NVENC, or accepts `--ffmpeg <path>`. Players initially show lazy-loaded posters and do not create video elements or request MP4s until clicked; starting one recording pauses the other. Source recordings remain unchanged and are never copied into public assets.
+
 ## Mixed Lives cover
 
 `src/components/MixedLivesCover.tsx` displays the supplied PNG above a static merged export of the supplied PSD. Each image keeps its original 16:9 proportions; together they form an 8:9 homepage cover. The owner canceled the bottle-floating effect; keep this artwork static. Desktop placement is defined in `src/styles.css`.
