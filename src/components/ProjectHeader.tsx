@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { CSSProperties } from 'react';
 import type { Project } from '../types';
-import { emotionalVacuumChapters, mixedLivesChapters } from '../data/projectChapters';
+import { dkuCampusChapters, emotionalVacuumChapters, mixedLivesChapters } from '../data/projectChapters';
 import { useNavigationGeometry } from './useNavigationGeometry';
 
 function NavArrow({ back = false }: { back?: boolean }) {
@@ -12,7 +12,8 @@ function NavArrow({ back = false }: { back?: boolean }) {
 export default function ProjectHeader({ project }: { project: Project }) {
   const { geometry, buttonStyle, viewport } = useNavigationGeometry();
   const [showChapters, setShowChapters] = useState(false);
-  const chapters = project.slug === 'emotional-vacuum' ? emotionalVacuumChapters : project.slug === 'mixed-lives' ? mixedLivesChapters : [];
+  const chapters = project.slug === 'emotional-vacuum' ? emotionalVacuumChapters : project.slug === 'mixed-lives' ? mixedLivesChapters : project.slug === 'dku-campus-tour' ? dkuCampusChapters : [];
+  const usesScrollActive = project.slug === 'mixed-lives' || project.slug === 'dku-campus-tour';
   const [active, setActive] = useState(chapters[0]?.id ?? '');
   const { headerHeight } = geometry;
 
@@ -26,12 +27,12 @@ export default function ProjectHeader({ project }: { project: Project }) {
   useEffect(() => {
     const marker = document.getElementById('project-chapters');
     if (!chapters.length || !marker) return;
-    const chapterThreshold = headerHeight + (project.slug === 'mixed-lives' ? 16 : 0);
+    const chapterThreshold = headerHeight + (project.slug === 'dku-campus-tour' ? 48 : usesScrollActive ? 16 : 0);
     const observer = new IntersectionObserver(([entry]) => {
       setShowChapters(entry.boundingClientRect.bottom <= chapterThreshold + 1);
     }, { rootMargin: `-${chapterThreshold}px 0px 0px 0px`, threshold: 0 });
     observer.observe(marker);
-    const sections = project.slug === 'mixed-lives' ? null : new IntersectionObserver(entries => {
+    const sections = usesScrollActive ? null : new IntersectionObserver(entries => {
       for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
     }, { rootMargin: `-${headerHeight + 16}px 0px -${Math.max(0, viewport.height - headerHeight - 120)}px 0px`, threshold: 0 });
     chapters.forEach(chapter => { const section = document.getElementById(chapter.id); if (section) sections?.observe(section); });
@@ -42,14 +43,15 @@ export default function ProjectHeader({ project }: { project: Project }) {
       let current = chapters[0].id;
       for (const chapter of chapters) {
         const section = document.getElementById(chapter.id);
-        if (section && section.getBoundingClientRect().top <= headerHeight + 24) current = chapter.id;
+        if (section && section.getBoundingClientRect().top <= (project.slug === 'dku-campus-tour' ? chapterThreshold + 8 : headerHeight + 24)) current = chapter.id;
       }
+      if (project.slug === 'dku-campus-tour' && window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) current = chapters[chapters.length - 1].id;
       setActive(current);
     };
     const queueChapterUpdate = () => {
       if (!frame) frame = requestAnimationFrame(updateActiveChapter);
     };
-    if (project.slug === 'mixed-lives') {
+    if (usesScrollActive) {
       window.addEventListener('scroll', queueChapterUpdate, { passive: true });
       updateActiveChapter();
     }
@@ -58,7 +60,7 @@ export default function ProjectHeader({ project }: { project: Project }) {
       window.removeEventListener('scroll', queueChapterUpdate);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [project.slug, headerHeight, viewport.height, chapters]);
+  }, [project.slug, headerHeight, viewport.height, chapters, usesScrollActive]);
 
   const centerGap = viewport.viewportWidth <= 380 ? 0 : viewport.viewportWidth <= 1100 ? 10 : 26 * geometry.scale;
   const backLeft = geometry.left;
@@ -85,7 +87,7 @@ export default function ProjectHeader({ project }: { project: Project }) {
             <select className="project-header-chapter-select" aria-label="Project chapters" value={active} onChange={event => {
               const id = event.target.value;
               setActive(id);
-              document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: project.slug === 'mixed-lives' || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+              document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: usesScrollActive || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
             }}>{chapters.map(chapter => <option value={chapter.id} key={chapter.id}>{chapter.label}</option>)}</select>
           </div>}
         </div>

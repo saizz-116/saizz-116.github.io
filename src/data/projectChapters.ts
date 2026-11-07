@@ -17,3 +17,11 @@ export const mixedLivesChapters = [
   { id: 'ml-art', label: '06 Art' },
   { id: 'ml-reflection', label: '07 Reflection' },
 ];
+
+export const dkuCampusChapters = [
+  { id: 'dku-overview', label: '01 Overview' },
+  { id: 'dku-gameplay', label: '02 Gameplay' },
+  { id: 'dku-interaction', label: '03 Interaction' },
+  { id: 'dku-art', label: '04 Art & atmosphere' },
+  { id: 'dku-reflection', label: '05 Reflection' },
+];
